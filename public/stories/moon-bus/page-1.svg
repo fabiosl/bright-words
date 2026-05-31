@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="A friendly blue bus waiting under a purple evening sky">
+  <rect width="1600" height="1000" fill="#6656c6"/>
+  <circle cx="1240" cy="160" r="104" fill="#ffeaa6"/>
+  <circle cx="1280" cy="128" r="104" fill="#6656c6"/>
+  <g fill="#fff2a8">
+    <circle cx="180" cy="130" r="9"/><circle cx="430" cy="210" r="7"/><circle cx="710" cy="115" r="8"/><circle cx="1030" cy="300" r="7"/>
+  </g>
+  <path d="M0 700 C260 640 520 730 790 660 C1060 590 1320 690 1600 610 L1600 1000 L0 1000 Z" fill="#8aa7ed"/>
+  <path d="M390 570 H1110 Q1190 570 1218 652 L1278 840 H310 L360 650 Q380 570 390 570 Z" fill="#39b8ff"/>
+  <rect x="495" y="622" width="150" height="105" rx="16" fill="#eaffff"/>
+  <rect x="695" y="622" width="150" height="105" rx="16" fill="#eaffff"/>
+  <rect x="895" y="622" width="150" height="105" rx="16" fill="#eaffff"/>
+  <circle cx="498" cy="845" r="62" fill="#1d2d4d"/>
+  <circle cx="1045" cy="845" r="62" fill="#1d2d4d"/>
+  <circle cx="498" cy="845" r="28" fill="#d8e4ff"/>
+  <circle cx="1045" cy="845" r="28" fill="#d8e4ff"/>
+  <g transform="translate(275 710)">
+    <circle cx="0" cy="-118" r="54" fill="#8c5f42"/>
+    <path d="M-50 -156 C-20 -210 38 -200 58 -148 C26 -166 -18 -164 -50 -156 Z" fill="#1f2c4d"/>
+    <path d="M-55 -52 Q0 -136 56 -52 L45 72 L-45 72 Z" fill="#ffcf3f"/>
+    <path d="M-45 78 L-82 190" stroke="#253b63" stroke-width="28" stroke-linecap="round"/>
+    <path d="M42 78 L82 190" stroke="#253b63" stroke-width="28" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,81 @@
+{
+  "stories": [
+    {
+      "id": "sunny-park",
+      "title": "Mia no parque",
+      "description": "Mia vai ao jardim, pula feliz e sorri no fim.",
+      "level": "iniciante",
+      "coverImage": "/stories/sunny-park/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/sunny-park/page-1.svg",
+          "alt": "Mia em um caminho ensolarado do parque, com árvores e flores.",
+          "paragraph": "Mia vai ao jardim."
+        },
+        {
+          "image": "/stories/sunny-park/page-2.svg",
+          "alt": "Mia olhando uma pipa vermelha voar sobre uma colina verde.",
+          "paragraph": "Ela pula bem assim."
+        },
+        {
+          "image": "/stories/sunny-park/page-3.svg",
+          "alt": "Mia sentada em uma manta com um lanche e um cachorro sorridente por perto.",
+          "paragraph": "Mia sorri no fim."
+        }
+      ]
+    },
+    {
+      "id": "moon-bus",
+      "title": "Ônibus da lua",
+      "description": "Noah sobe para viajar, vê estrelas e quer sonhar.",
+      "level": "iniciante",
+      "coverImage": "/stories/moon-bus/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/moon-bus/page-1.svg",
+          "alt": "Um ônibus azul e amigável esperando sob um céu roxo.",
+          "paragraph": "Noah sobe para viajar."
+        },
+        {
+          "image": "/stories/moon-bus/page-2.svg",
+          "alt": "O ônibus da lua andando em uma estrada acima de nuvens macias.",
+          "paragraph": "A estrela vem brilhar."
+        },
+        {
+          "image": "/stories/moon-bus/page-3.svg",
+          "alt": "Noah acenando para a lua pela janela do ônibus.",
+          "paragraph": "A lua quer sonhar."
+        }
+      ]
+    },
+    {
+      "id": "benjamin-nasa",
+      "title": "Benjamin na NASA",
+      "description": "Benjamin vai de foguete, vê a Terra e sorri contente.",
+      "level": "iniciante",
+      "coverImage": "/stories/benjamin-nasa/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/benjamin-nasa/page-1.svg",
+          "alt": "Benjamin chegando feliz ao prédio da NASA com foguetes ao fundo.",
+          "paragraph": "Benjamin chega à NASA."
+        },
+        {
+          "image": "/stories/benjamin-nasa/page-2.svg",
+          "alt": "Benjamin vestindo um traje espacial branco ao lado de um capacete.",
+          "paragraph": "Ele veste a roupa clara."
+        },
+        {
+          "image": "/stories/benjamin-nasa/page-3.svg",
+          "alt": "Benjamin sentado dentro de um foguete pronto para decolar.",
+          "paragraph": "O foguete passa e dispara."
+        },
+        {
+          "image": "/stories/benjamin-nasa/page-4.svg",
+          "alt": "Benjamin olhando a Terra azul pela janela da nave.",
+          "paragraph": "A Terra brilha e ampara."
+        }
+      ]
+    }
+  ]
+}

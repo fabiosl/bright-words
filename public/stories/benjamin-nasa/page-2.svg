@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Benjamin putting on a space suit">
+  <rect width="1600" height="1000" fill="#d9f3ff"/>
+  <rect x="0" y="650" width="1600" height="350" fill="#d4dde8"/>
+  <rect x="150" y="180" width="1300" height="520" rx="24" fill="#f7fbff"/>
+  <rect x="210" y="245" width="340" height="190" rx="12" fill="#78cfff"/>
+  <rect x="620" y="245" width="340" height="190" rx="12" fill="#78cfff"/>
+  <rect x="1030" y="245" width="340" height="190" rx="12" fill="#78cfff"/>
+  <g transform="translate(760 625)">
+    <circle cx="0" cy="-185" r="66" fill="#9c6748"/>
+    <path d="M-62 -232 C-24 -294 52 -280 70 -214 C30 -238 -18 -236 -62 -232 Z" fill="#243653"/>
+    <rect x="-118" y="-112" width="236" height="260" rx="58" fill="#ffffff"/>
+    <circle cx="0" cy="-185" r="96" fill="none" stroke="#e7f4ff" stroke-width="26"/>
+    <path d="M-88 -46 L-178 46" stroke="#ffffff" stroke-width="36" stroke-linecap="round"/>
+    <path d="M88 -46 L178 46" stroke="#ffffff" stroke-width="36" stroke-linecap="round"/>
+    <path d="M-64 148 L-108 300" stroke="#ffffff" stroke-width="42" stroke-linecap="round"/>
+    <path d="M64 148 L108 300" stroke="#ffffff" stroke-width="42" stroke-linecap="round"/>
+    <rect x="-55" y="-62" width="110" height="62" rx="10" fill="#5cc3ff"/>
+    <circle cx="-32" cy="-30" r="9" fill="#ffcf3f"/>
+    <circle cx="0" cy="-30" r="9" fill="#ff6f5f"/>
+    <circle cx="32" cy="-30" r="9" fill="#6edb77"/>
+  </g>
+  <g transform="translate(1135 695)">
+    <circle cx="0" cy="0" r="98" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="63" fill="#83d9ff"/>
+    <path d="M-72 62 Q0 120 72 62" fill="none" stroke="#d2e4f6" stroke-width="22" stroke-linecap="round"/>
+  </g>
+</svg>

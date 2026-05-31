@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="The moon bus rolling on a road above soft clouds">
+  <rect width="1600" height="1000" fill="#4d58b4"/>
+  <g fill="#fff2a8">
+    <circle cx="170" cy="150" r="9"/><circle cx="360" cy="320" r="6"/><circle cx="790" cy="160" r="8"/><circle cx="1280" cy="260" r="7"/><circle cx="1430" cy="120" r="5"/>
+  </g>
+  <path d="M0 760 C200 675 330 760 520 690 C710 620 850 710 1030 650 C1240 580 1400 680 1600 610 L1600 1000 L0 1000 Z" fill="#d6f1ff" opacity=".92"/>
+  <path d="M180 700 C490 610 800 745 1230 660" fill="none" stroke="#263c79" stroke-width="90" stroke-linecap="round"/>
+  <path d="M430 540 H1120 Q1190 540 1215 620 L1270 790 H360 L400 620 Q420 540 430 540 Z" fill="#40c2ff"/>
+  <rect x="530" y="596" width="145" height="100" rx="16" fill="#f0ffff"/>
+  <rect x="730" y="596" width="145" height="100" rx="16" fill="#f0ffff"/>
+  <rect x="930" y="596" width="145" height="100" rx="16" fill="#f0ffff"/>
+  <circle cx="530" cy="800" r="62" fill="#1c2a4d"/>
+  <circle cx="1070" cy="800" r="62" fill="#1c2a4d"/>
+  <circle cx="530" cy="800" r="27" fill="#d8e4ff"/>
+  <circle cx="1070" cy="800" r="27" fill="#d8e4ff"/>
+  <path d="M460 790 H1200" stroke="#ffcf3f" stroke-width="18" stroke-linecap="round"/>
+</svg>

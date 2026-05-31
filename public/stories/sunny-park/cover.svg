@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="A sunny park with a kite and trees">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#7ad7ff"/>
+      <stop offset="1" stop-color="#fff0a8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#sky)"/>
+  <circle cx="970" cy="130" r="82" fill="#ffd84d"/>
+  <path d="M0 560 C260 450 430 620 650 520 C850 430 1010 500 1200 420 L1200 750 L0 750 Z" fill="#6cc568"/>
+  <path d="M0 640 C220 545 430 675 640 590 C820 516 1020 610 1200 528 L1200 750 L0 750 Z" fill="#3ea766"/>
+  <g transform="translate(210 330)">
+    <rect x="46" y="102" width="36" height="170" fill="#835431"/>
+    <circle cx="64" cy="64" r="84" fill="#2f9b5a"/>
+    <circle cx="12" cy="82" r="54" fill="#46b86f"/>
+    <circle cx="118" cy="96" r="58" fill="#43ad67"/>
+  </g>
+  <g transform="translate(784 210) rotate(-12)">
+    <path d="M0 0 L90 42 L0 84 L-88 42 Z" fill="#ff6868"/>
+    <path d="M0 0 L90 42 L0 84 Z" fill="#ffcf3f"/>
+    <path d="M0 84 C-28 132 20 148 -6 192" fill="none" stroke="#24455f" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <path d="M330 624 C450 540 595 532 752 610" fill="none" stroke="#f9d58a" stroke-width="44" stroke-linecap="round"/>
+  <circle cx="492" cy="532" r="44" fill="#6b4a33"/>
+  <path d="M448 610 L492 536 L540 610" fill="none" stroke="#2e4f68" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="492" cy="482" r="38" fill="#9a6848"/>
+  <path d="M456 458 C482 416 520 428 536 462" fill="#263b54"/>
+</svg>

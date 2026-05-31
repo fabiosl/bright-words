@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Benjamin seeing Earth from a spaceship window">
+  <rect width="1600" height="1000" fill="#101a45"/>
+  <g fill="#fff4b8">
+    <circle cx="120" cy="150" r="7"/><circle cx="270" cy="405" r="5"/><circle cx="520" cy="230" r="6"/><circle cx="980" cy="145" r="7"/><circle cx="1415" cy="300" r="6"/><circle cx="1260" cy="680" r="5"/>
+  </g>
+  <circle cx="1120" cy="565" r="235" fill="#4cc3ff"/>
+  <path d="M960 480 C1040 410 1125 445 1158 510 C1210 495 1285 545 1280 620 C1215 665 1130 628 1094 700 C1010 690 955 625 960 480 Z" fill="#5ed178"/>
+  <path d="M1235 410 C1300 450 1335 505 1342 590" fill="none" stroke="#e8f7ff" stroke-width="34" stroke-linecap="round" opacity=".8"/>
+  <g transform="translate(555 575)">
+    <rect x="-210" y="-250" width="420" height="500" rx="80" fill="#e9f2ff"/>
+    <circle cx="0" cy="-86" r="72" fill="#9c6748"/>
+    <path d="M-66 -132 C-25 -198 52 -185 74 -116 C30 -142 -20 -140 -66 -132 Z" fill="#243653"/>
+    <rect x="-112" y="-6" width="224" height="242" rx="60" fill="#ffffff"/>
+    <circle cx="0" cy="-86" r="102" fill="none" stroke="#ffffff" stroke-width="30"/>
+    <rect x="-54" y="62" width="108" height="60" rx="10" fill="#5cc3ff"/>
+    <path d="M-96 50 L-176 135" stroke="#ffffff" stroke-width="34" stroke-linecap="round"/>
+    <path d="M96 50 L178 130" stroke="#ffffff" stroke-width="34" stroke-linecap="round"/>
+  </g>
+  <circle cx="1120" cy="565" r="292" fill="none" stroke="#ffffff" stroke-width="26" opacity=".3"/>
+  <path d="M60 900 C350 810 570 925 840 850 C1110 770 1330 875 1600 790 L1600 1000 L60 1000 Z" fill="#202b61"/>
+</svg>
