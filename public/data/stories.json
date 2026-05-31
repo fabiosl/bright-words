@@ -1,10 +1,41 @@
 {
   "stories": [
     {
+      "id": "lila-moonbeam",
+      "title": "Lila and the Little Moonbeam",
+      "description": "Lila helps a sleepy moonbeam find its way home.",
+      "level": "beginner",
+      "language": "en-US",
+      "coverImage": "/stories/lila-moonbeam/cover.png",
+      "pages": [
+        {
+          "image": "/stories/lila-moonbeam/page-1.png",
+          "alt": "Lila sees a tiny silver moonbeam sleeping on her windowsill.",
+          "paragraph": "Lila woke up. A tiny moonbeam was sleeping on her windowsill. \"Hello,\" whispered Lila. The moonbeam blinked and smiled."
+        },
+        {
+          "image": "/stories/lila-moonbeam/page-2.png",
+          "alt": "Lila gently pulls the tiny moonbeam in a red toy wagon.",
+          "paragraph": "The moonbeam was too sleepy to fly home. So Lila put it in her little red wagon. She pulled it softly across the room. Bump, bump, shhh."
+        },
+        {
+          "image": "/stories/lila-moonbeam/page-3.png",
+          "alt": "Lila makes a little stairway with pillows and blocks for the moonbeam.",
+          "paragraph": "Lila made a stairway with pillows and blocks. Up, up, up went the moonbeam. \"Almost home!\" said Lila. The moon smiled from the sky."
+        },
+        {
+          "image": "/stories/lila-moonbeam/page-4.png",
+          "alt": "The moonbeam waves from the sky while Lila smiles in bed.",
+          "paragraph": "The moonbeam waved goodbye. Lila waved back from her bed. \"Good night, little moonbeam,\" she said. And Lila fell asleep with a happy smile."
+        }
+      ]
+    },
+    {
       "id": "sunny-park",
       "title": "Mia no parque",
       "description": "Mia vai ao jardim, pula feliz e sorri no fim.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/sunny-park/cover.svg",
       "pages": [
         {
@@ -29,6 +60,7 @@
       "title": "Ônibus da lua",
       "description": "Noah sobe para viajar, vê estrelas e quer sonhar.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/moon-bus/cover.svg",
       "pages": [
         {
@@ -53,6 +85,7 @@
       "title": "Benjamin na NASA",
       "description": "Benjamin vai de foguete, vê a Terra e sorri contente.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/benjamin-nasa/cover.svg",
       "pages": [
         {
@@ -82,30 +115,32 @@
       "title": "Olivia em Langley",
       "description": "Olivia nasceu em Langley, chegou com amor e trouxe calor.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/olivia-langley/cover.svg",
       "pages": [
         {
           "image": "/stories/olivia-langley/page-1.svg",
-          "alt": "Uma familia feliz chegando ao hospital em Langley.",
+          "alt": "Uma família feliz chegando ao hospital em Langley.",
           "paragraph": "Olivia veio em Langley."
         },
         {
           "image": "/stories/olivia-langley/page-2.svg",
-          "alt": "Olivia bebe dormindo em um cobertor rosa.",
+          "alt": "Olivia bebê dormindo em um cobertor rosa.",
           "paragraph": "Veio cheia de amor."
         },
         {
           "image": "/stories/olivia-langley/page-3.svg",
-          "alt": "A familia olhando Olivia com carinho perto da janela.",
+          "alt": "A família olhando Olivia com carinho perto da janela.",
           "paragraph": "A casa ganhou calor."
         }
       ]
     },
     {
       "id": "alaska-lili",
-      "title": "Alaska com vovo Lili",
-      "description": "No cruzeiro, Lili sorri, ve gelo e canta aqui.",
+      "title": "Alaska com vovó Lili",
+      "description": "No cruzeiro, Lili sorri, vê gelo e canta aqui.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/alaska-lili/cover.svg",
       "pages": [
         {
@@ -115,36 +150,37 @@
         },
         {
           "image": "/stories/alaska-lili/page-2.svg",
-          "alt": "Vovo Lili sorrindo no deque do navio com gelo ao fundo.",
+          "alt": "Vovó Lili sorrindo no deque do navio com gelo ao fundo.",
           "paragraph": "O gelo brilha frio."
         },
         {
           "image": "/stories/alaska-lili/page-3.svg",
-          "alt": "A familia acenando para uma baleia no mar.",
+          "alt": "A família acenando para uma baleia no mar.",
           "paragraph": "Lili canta e sorri."
         }
       ]
     },
     {
       "id": "joao-pessoa",
-      "title": "Ferias em Joao Pessoa",
-      "description": "Na praia, o pe toca a areia, o sol sorri e a onda passeia.",
+      "title": "Férias em João Pessoa",
+      "description": "Na praia, o pé toca a areia, o sol sorri e a onda passeia.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/joao-pessoa/cover.svg",
       "pages": [
         {
           "image": "/stories/joao-pessoa/page-1.svg",
-          "alt": "Praia em Joao Pessoa com sol, coqueiros e mar calmo.",
-          "paragraph": "Joao Pessoa tem areia."
+          "alt": "Praia em João Pessoa com sol, coqueiros e mar calmo.",
+          "paragraph": "João Pessoa tem areia."
         },
         {
           "image": "/stories/joao-pessoa/page-2.svg",
-          "alt": "Uma crianca brincando perto da agua com um baldinho.",
+          "alt": "Uma criança brincando perto da água com um baldinho.",
           "paragraph": "A onda vem e passeia."
         },
         {
           "image": "/stories/joao-pessoa/page-3.svg",
-          "alt": "A familia vendo o sol nascer na praia.",
+          "alt": "A família vendo o sol nascer na praia.",
           "paragraph": "O sol sorri na areia."
         }
       ]
@@ -152,19 +188,20 @@
     {
       "id": "kayak-vancouver",
       "title": "Kayak com papai",
-      "description": "No kayak em Vancouver, papai pesca no mar e ve o peixe pular.",
+      "description": "No kayak em Vancouver, papai pesca no mar e vê o peixe pular.",
       "level": "iniciante",
+      "language": "pt-BR",
       "coverImage": "/stories/kayak-vancouver/cover.svg",
       "pages": [
         {
           "image": "/stories/kayak-vancouver/page-1.svg",
-          "alt": "Papai e crianca em um kayak azul no mar de Vancouver.",
+          "alt": "Papai e criança em um kayak azul no mar de Vancouver.",
           "paragraph": "Papai vai no kayak."
         },
         {
           "image": "/stories/kayak-vancouver/page-2.svg",
-          "alt": "Papai segurando uma vara de pesca enquanto o kayak balanca.",
-          "paragraph": "A vara vai balancar."
+          "alt": "Papai segurando uma vara de pesca enquanto o kayak balança.",
+          "paragraph": "A vara vai balançar."
         },
         {
           "image": "/stories/kayak-vancouver/page-3.svg",

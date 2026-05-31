@@ -3,11 +3,13 @@ import type { ProgressMap, StoriesResponse, Story, StoryProgress } from './types
 import { clampProgress, clearStoryProgress, readProgress, saveStoryProgress, splitWords } from './storyUtils';
 
 type View = 'library' | 'reader';
+type LanguageFilter = 'all' | 'en-US' | 'pt-BR';
 
 export function App() {
   const [stories, setStories] = useState<Story[]>([]);
   const [progress, setProgress] = useState<ProgressMap>({});
   const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
+  const [languageFilter, setLanguageFilter] = useState<LanguageFilter>('all');
   const [status, setStatus] = useState('Loading stories...');
 
   useEffect(() => {
@@ -62,7 +64,14 @@ export function App() {
   return (
     <>
       {view === 'library' && (
-        <StoryLibrary stories={stories} progress={progress} onOpenStory={openStory} onResetStory={resetStory} />
+        <StoryLibrary
+          stories={stories}
+          progress={progress}
+          languageFilter={languageFilter}
+          onLanguageFilterChange={setLanguageFilter}
+          onOpenStory={openStory}
+          onResetStory={resetStory}
+        />
       )}
       {activeStory && (
         <StoryReader
@@ -80,14 +89,26 @@ export function App() {
 function StoryLibrary({
   stories,
   progress,
+  languageFilter,
+  onLanguageFilterChange,
   onOpenStory,
   onResetStory,
 }: {
   stories: Story[];
   progress: ProgressMap;
+  languageFilter: LanguageFilter;
+  onLanguageFilterChange: (language: LanguageFilter) => void;
   onOpenStory: (story: Story) => void;
   onResetStory: (storyId: string) => void;
 }) {
+  const filteredStories = stories.filter((story) => {
+    if (languageFilter === 'all') {
+      return true;
+    }
+
+    return getStoryLanguage(story) === languageFilter;
+  });
+
   return (
     <main className="library-shell">
       <section className="library-heading" aria-labelledby="library-title">
@@ -95,8 +116,32 @@ function StoryLibrary({
         <h1 id="library-title">Pick a story</h1>
       </section>
 
+      <div className="language-filter" aria-label="Filter stories by language">
+        <button
+          className={languageFilter === 'all' ? 'active-language-filter' : ''}
+          type="button"
+          onClick={() => onLanguageFilterChange('all')}
+        >
+          All
+        </button>
+        <button
+          className={languageFilter === 'en-US' ? 'active-language-filter' : ''}
+          type="button"
+          onClick={() => onLanguageFilterChange('en-US')}
+        >
+          English
+        </button>
+        <button
+          className={languageFilter === 'pt-BR' ? 'active-language-filter' : ''}
+          type="button"
+          onClick={() => onLanguageFilterChange('pt-BR')}
+        >
+          Portuguese
+        </button>
+      </div>
+
       <section className="story-grid" aria-label="Stories">
-        {stories.map((story) => {
+        {filteredStories.map((story) => {
           const storyProgress = progress[story.id];
           const isStarted = storyProgress && !storyProgress.completed;
           const isComplete = storyProgress?.completed;
@@ -106,6 +151,7 @@ function StoryLibrary({
               <img src={story.coverImage} alt="" className="story-cover" />
               <div className="story-card-body">
                 <div className="story-meta">
+                  <span>{getLanguageLabel(story)}</span>
                   <span>{story.level}</span>
                   {isComplete && <span>Finished</span>}
                   {isStarted && <span>In progress</span>}
@@ -282,18 +328,18 @@ function StoryReader({
       <button
         className="page-button page-button-left"
         type="button"
-        onClick={() => goToPage(pageIndex - 1)}
-        disabled={pageIndex === 0}
-        aria-label="Previous page"
+        onClick={previousWord}
+        disabled={!completed && pageIndex === 0 && wordIndex === 0}
+        aria-label="Previous word"
       >
         ‹
       </button>
       <button
         className="page-button page-button-right"
         type="button"
-        onClick={() => goToPage(pageIndex + 1)}
-        disabled={pageIndex === story.pages.length - 1}
-        aria-label="Next page"
+        onClick={nextWord}
+        disabled={completed}
+        aria-label="Next word"
       >
         ›
       </button>
@@ -313,31 +359,58 @@ function StoryReader({
             </div>
           </div>
         ) : (
-          <p className="focus-word" style={{ '--word-scale': getWordScale(activeWord) }}>
-            {activeWord}
-          </p>
+          <div className="focus-reading-stack">
+            <div className="focus-word-row">
+              <p className="focus-word" style={{ '--word-scale': getWordScale(activeWord) }}>
+                {activeWord}
+              </p>
+              <button
+                className="speaker-button"
+                type="button"
+                onClick={() => speakWord(activeWord, getStoryLanguage(story))}
+                aria-label={`Read ${activeWord} aloud`}
+                title="Read word aloud"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                  <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+                  <path d="M16 8.5a5 5 0 0 1 0 7" />
+                  <path d="M18.5 6a8 8 0 0 1 0 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="paragraph-strip" aria-label="Frase completa">
+              {words.map((word, index) => (
+                <span className={index === wordIndex ? 'active-paragraph-word' : ''} key={`${word}-${index}`}>
+                  {word}
+                </span>
+              ))}
+            </div>
+          </div>
         )}
       </section>
 
       {!completed && (
         <footer className="reader-footer">
-          <div className="paragraph-strip" aria-label="Full paragraph">
-            {words.map((word, index) => (
-              <span className={index === wordIndex ? 'active-paragraph-word' : ''} key={`${word}-${index}`}>
-                {word}
-              </span>
-            ))}
-          </div>
-
-          <div className="word-controls" aria-label="Word controls">
-            <button className="secondary-button control-button" type="button" onClick={previousWord}>
-              ‹ Word
+          <div className="word-controls" aria-label="Page controls">
+            <button
+              className="secondary-button control-button"
+              type="button"
+              onClick={() => goToPage(pageIndex - 1)}
+              disabled={pageIndex === 0}
+            >
+              ‹ Page
             </button>
             <div className="word-progress">
-              {wordIndex + 1} / {words.length}
+              {pageIndex + 1} / {story.pages.length}
             </div>
-            <button className="primary-button control-button" type="button" onClick={nextWord}>
-              Word ›
+            <button
+              className="primary-button control-button"
+              type="button"
+              onClick={() => goToPage(pageIndex + 1)}
+              disabled={pageIndex === story.pages.length - 1}
+            >
+              Page ›
             </button>
           </div>
         </footer>
@@ -348,5 +421,32 @@ function StoryReader({
 
 function getWordScale(word: string) {
   const letters = Math.max(word.length, 1);
-  return `${Math.min(17, Math.max(7, 140 / letters))}vw`;
+  return `${Math.min(16, Math.max(4.5, 92 / letters))}vw`;
+}
+
+function getStoryLanguage(story: Story): LanguageFilter {
+  return story.language === 'en-US' ? 'en-US' : 'pt-BR';
+}
+
+function getLanguageLabel(story: Story) {
+  return getStoryLanguage(story) === 'en-US' ? 'English' : 'Portuguese';
+}
+
+function speakWord(word: string, language = 'pt-BR') {
+  if (!('speechSynthesis' in window)) {
+    return;
+  }
+
+  const text = word.replace(/[.,!?;:"“”]/g, '').trim();
+  if (!text) {
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = language;
+  utterance.rate = 0.85;
+  utterance.pitch = 1.05;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
 }

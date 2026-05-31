@@ -9,6 +9,7 @@ export type Story = {
   title: string;
   description: string;
   level: string;
+  language?: string;
   coverImage: string;
   pages: StoryPage[];
 };
