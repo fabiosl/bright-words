@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Familia vendo o sol na areia">
+  <rect width="1600" height="1000" fill="#ffb36c"/>
+  <circle cx="800" cy="455" r="150" fill="#ffd95a"/>
+  <path d="M0 520 C280 470 520 555 790 505 C1090 450 1320 540 1600 485 L1600 680 L0 680 Z" fill="#35aeca"/>
+  <path d="M0 650 C300 610 570 710 860 650 C1130 595 1360 685 1600 635 L1600 1000 L0 1000 Z" fill="#f2d486"/>
+  <g transform="translate(620 760)">
+    <circle cx="0" cy="-95" r="45" fill="#9d6849"/>
+    <path d="M-52 -32 Q0 -98 55 -32 L45 88 L-45 88 Z" fill="#6fc7ff"/>
+  </g>
+  <g transform="translate(760 755)">
+    <circle cx="0" cy="-100" r="48" fill="#9d6849"/>
+    <path d="M-55 -35 Q0 -105 58 -35 L48 95 L-48 95 Z" fill="#ff6868"/>
+  </g>
+  <g transform="translate(910 760)">
+    <circle cx="0" cy="-95" r="45" fill="#9d6849"/>
+    <path d="M-52 -32 Q0 -98 55 -32 L45 88 L-45 88 Z" fill="#ffcf3f"/>
+  </g>
+  <path d="M500 855 C680 810 870 810 1080 855" fill="none" stroke="#d9a95d" stroke-width="28" stroke-linecap="round"/>
+</svg>

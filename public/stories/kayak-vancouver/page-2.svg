@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Papai segurando vara de pesca no kayak">
+  <rect width="1600" height="1000" fill="#c6f2ff"/>
+  <path d="M0 510 L180 310 L350 510 Z" fill="#86aabd"/>
+  <path d="M1120 515 L1330 290 L1540 515 Z" fill="#7fa0af"/>
+  <rect y="560" width="1600" height="440" fill="#2e96bd"/>
+  <path d="M0 710 C245 645 520 780 815 710 C1110 640 1320 785 1600 700" fill="none" stroke="#8bd6ef" stroke-width="28" stroke-linecap="round"/>
+  <path d="M420 660 C590 805 990 805 1160 660 C990 900 590 900 420 660 Z" fill="#ffcf3f"/>
+  <g transform="translate(785 610)">
+    <circle cx="0" cy="-115" r="58" fill="#9d6849"/>
+    <path d="M-56 -148 C-20 -205 46 -200 70 -142 C26 -160 -18 -162 -56 -148 Z" fill="#263653"/>
+    <path d="M-68 -48 Q0 -122 72 -48 L58 112 L-58 112 Z" fill="#ff6868"/>
+    <path d="M74 -55 L182 -125" stroke="#9d6849" stroke-width="24" stroke-linecap="round"/>
+    <path d="M168 -134 C280 -270 455 -235 520 -100" fill="none" stroke="#183048" stroke-width="11" stroke-linecap="round"/>
+    <path d="M520 -100 C550 -40 525 25 565 72" fill="none" stroke="#183048" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

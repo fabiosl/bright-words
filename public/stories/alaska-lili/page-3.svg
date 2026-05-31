@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Familia vendo uma baleia no Alaska">
+  <rect width="1600" height="1000" fill="#bfefff"/>
+  <path d="M0 520 L220 250 L430 520 Z" fill="#eefaff"/>
+  <path d="M1120 540 L1330 270 L1540 540 Z" fill="#f8fdff"/>
+  <path d="M0 680 C260 610 520 720 810 660 C1100 600 1320 715 1600 625 L1600 1000 L0 1000 Z" fill="#2e8fc5"/>
+  <path d="M780 585 C930 510 1090 560 1165 665 C1050 720 870 710 780 585 Z" fill="#4b7892"/>
+  <path d="M1148 660 L1260 600 L1240 710 Z" fill="#4b7892"/>
+  <circle cx="905" cy="595" r="10" fill="#10283a"/>
+  <path d="M940 515 C920 440 995 420 1000 350" fill="none" stroke="#6ecfff" stroke-width="22" stroke-linecap="round"/>
+  <g transform="translate(395 740)">
+    <circle cx="0" cy="-88" r="42" fill="#9d6849"/>
+    <path d="M-50 -28 Q0 -92 55 -28 L45 82 L-45 82 Z" fill="#ffcf3f"/>
+  </g>
+  <g transform="translate(525 742)">
+    <circle cx="0" cy="-88" r="42" fill="#9d6849"/>
+    <path d="M-50 -28 Q0 -92 55 -28 L45 82 L-45 82 Z" fill="#f06f8f"/>
+  </g>
+</svg>

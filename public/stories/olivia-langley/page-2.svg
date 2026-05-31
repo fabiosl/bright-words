@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Olivia bebe dormindo em cobertor rosa">
+  <rect width="1600" height="1000" fill="#ffe3ef"/>
+  <circle cx="1230" cy="180" r="112" fill="#fff5a8"/>
+  <path d="M230 650 C360 450 660 390 890 500 C1100 600 1280 540 1390 430 L1390 900 L230 900 Z" fill="#fff9fb"/>
+  <ellipse cx="800" cy="720" rx="470" ry="120" fill="#e8a8c6"/>
+  <g transform="translate(800 520)">
+    <path d="M-285 55 C-190 -130 175 -130 285 55 C220 220 -220 220 -285 55 Z" fill="#ffbfd2"/>
+    <circle cx="0" cy="-42" r="118" fill="#9d6849"/>
+    <path d="M-93 -92 C-45 -182 72 -170 110 -72 C40 -96 -35 -100 -93 -92 Z" fill="#5b3246"/>
+    <circle cx="-36" cy="-36" r="10" fill="#17324a"/>
+    <circle cx="36" cy="-36" r="10" fill="#17324a"/>
+    <path d="M-28 22 C-8 40 14 40 34 22" fill="none" stroke="#17324a" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <path d="M318 320 C370 270 426 272 466 324 C506 272 562 270 614 320 C560 392 392 392 318 320 Z" fill="#ff7aa8"/>
+  <path d="M1020 318 C1062 276 1110 278 1142 320 C1178 278 1226 276 1268 318 C1222 378 1080 378 1020 318 Z" fill="#ff7aa8"/>
+</svg>

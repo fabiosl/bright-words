@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Crianca brincando com onda e baldinho">
+  <rect width="1600" height="1000" fill="#89ddff"/>
+  <circle cx="1260" cy="130" r="86" fill="#ffd95a"/>
+  <path d="M0 520 C260 455 510 555 800 505 C1090 455 1320 545 1600 485 L1600 705 L0 705 Z" fill="#39b7d8"/>
+  <path d="M0 655 C260 610 500 690 760 645 C1020 600 1280 685 1600 630 L1600 1000 L0 1000 Z" fill="#f4d88a"/>
+  <path d="M110 620 C250 540 385 690 540 600 C690 515 820 650 980 570" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round"/>
+  <g transform="translate(860 675)">
+    <circle cx="0" cy="-126" r="58" fill="#9d6849"/>
+    <path d="M-55 -158 C-15 -218 48 -210 65 -150 C24 -168 -18 -170 -55 -158 Z" fill="#263653"/>
+    <path d="M-66 -58 Q0 -135 70 -58 L54 92 L-54 92 Z" fill="#ff6868"/>
+    <path d="M-48 98 L-82 205" stroke="#263653" stroke-width="28" stroke-linecap="round"/>
+    <path d="M48 98 L82 205" stroke="#263653" stroke-width="28" stroke-linecap="round"/>
+  </g>
+  <path d="M1035 735 L1180 735 L1150 860 L1065 860 Z" fill="#ffcf3f"/>
+  <path d="M1058 735 C1070 675 1145 675 1158 735" fill="none" stroke="#183048" stroke-width="14" stroke-linecap="round"/>
+</svg>

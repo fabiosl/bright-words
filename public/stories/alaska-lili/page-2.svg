@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Vovo Lili no deque com gelo">
+  <rect width="1600" height="1000" fill="#d8f7ff"/>
+  <circle cx="1320" cy="130" r="80" fill="#fff0a8"/>
+  <path d="M100 620 L310 300 L520 620 Z" fill="#eefaff"/>
+  <path d="M440 650 L720 240 L1010 650 Z" fill="#f7fcff"/>
+  <path d="M0 720 C260 670 510 730 780 690 C1050 650 1290 735 1600 675 L1600 1000 L0 1000 Z" fill="#3b9dcc"/>
+  <rect x="0" y="705" width="1600" height="120" fill="#ffffff"/>
+  <g transform="translate(820 690)">
+    <circle cx="0" cy="-145" r="70" fill="#9d6849"/>
+    <path d="M-68 -175 C-28 -242 50 -235 78 -168 C28 -188 -25 -190 -68 -175 Z" fill="#e7e7e7"/>
+    <circle cx="-24" cy="-144" r="8" fill="#17324a"/>
+    <circle cx="26" cy="-144" r="8" fill="#17324a"/>
+    <path d="M-24 -104 C-4 -86 22 -86 42 -104" fill="none" stroke="#17324a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-82 -54 Q0 -150 88 -54 L70 145 L-70 145 Z" fill="#f06f8f"/>
+    <path d="M-86 -25 L-180 -70" stroke="#9d6849" stroke-width="26" stroke-linecap="round"/>
+    <path d="M86 -25 L180 -80" stroke="#9d6849" stroke-width="26" stroke-linecap="round"/>
+  </g>
+</svg>

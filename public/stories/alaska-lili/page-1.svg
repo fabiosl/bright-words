@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Navio de cruzeiro no Alaska">
+  <rect width="1600" height="1000" fill="#b9eeff"/>
+  <path d="M0 560 L210 260 L390 560 Z" fill="#ecf8ff"/>
+  <path d="M320 585 L610 180 L910 585 Z" fill="#dcefff"/>
+  <path d="M810 570 L1070 245 L1330 570 Z" fill="#f4fbff"/>
+  <path d="M0 735 C270 660 530 760 800 700 C1070 640 1320 760 1600 675 L1600 1000 L0 1000 Z" fill="#2f91c6"/>
+  <path d="M180 560 L1300 560 L1170 740 L315 740 Z" fill="#ffffff"/>
+  <rect x="390" y="410" width="590" height="150" fill="#4aa3d8"/>
+  <rect x="560" y="310" width="260" height="100" fill="#ffffff"/>
+  <circle cx="475" cy="490" r="34" fill="#e0f7ff"/>
+  <circle cx="620" cy="490" r="34" fill="#e0f7ff"/>
+  <circle cx="765" cy="490" r="34" fill="#e0f7ff"/>
+  <path d="M980 390 L1190 560 L980 560 Z" fill="#ffcf3f"/>
+</svg>

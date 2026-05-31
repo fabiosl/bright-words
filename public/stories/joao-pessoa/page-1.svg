@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Praia de Joao Pessoa com coqueiros">
+  <rect width="1600" height="1000" fill="#7fd8ff"/>
+  <circle cx="1330" cy="130" r="95" fill="#ffd95a"/>
+  <path d="M0 530 C280 455 520 560 790 500 C1080 435 1320 545 1600 470 L1600 720 L0 720 Z" fill="#33b6d8"/>
+  <path d="M0 680 C300 630 570 730 860 670 C1130 615 1360 700 1600 650 L1600 1000 L0 1000 Z" fill="#f2d486"/>
+  <path d="M270 710 C380 530 520 455 705 430" fill="none" stroke="#8a5532" stroke-width="42" stroke-linecap="round"/>
+  <path d="M705 430 C625 355 535 360 465 420" fill="#2ca66b"/>
+  <path d="M705 430 C790 355 895 372 945 450" fill="#2ca66b"/>
+  <path d="M705 430 C720 330 800 275 915 295" fill="#3dbb7a"/>
+  <path d="M705 430 C610 315 500 300 405 350" fill="#3dbb7a"/>
+  <text x="1070" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="92" font-weight="900" fill="#183048">Joao Pessoa</text>
+</svg>

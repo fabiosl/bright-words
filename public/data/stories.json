@@ -76,6 +76,102 @@
           "paragraph": "A Terra brilha e ampara."
         }
       ]
+    },
+    {
+      "id": "olivia-langley",
+      "title": "Olivia em Langley",
+      "description": "Olivia nasceu em Langley, chegou com amor e trouxe calor.",
+      "level": "iniciante",
+      "coverImage": "/stories/olivia-langley/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/olivia-langley/page-1.svg",
+          "alt": "Uma familia feliz chegando ao hospital em Langley.",
+          "paragraph": "Olivia veio em Langley."
+        },
+        {
+          "image": "/stories/olivia-langley/page-2.svg",
+          "alt": "Olivia bebe dormindo em um cobertor rosa.",
+          "paragraph": "Veio cheia de amor."
+        },
+        {
+          "image": "/stories/olivia-langley/page-3.svg",
+          "alt": "A familia olhando Olivia com carinho perto da janela.",
+          "paragraph": "A casa ganhou calor."
+        }
+      ]
+    },
+    {
+      "id": "alaska-lili",
+      "title": "Alaska com vovo Lili",
+      "description": "No cruzeiro, Lili sorri, ve gelo e canta aqui.",
+      "level": "iniciante",
+      "coverImage": "/stories/alaska-lili/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/alaska-lili/page-1.svg",
+          "alt": "Um navio de cruzeiro navegando perto de montanhas no Alaska.",
+          "paragraph": "Lili vai no navio."
+        },
+        {
+          "image": "/stories/alaska-lili/page-2.svg",
+          "alt": "Vovo Lili sorrindo no deque do navio com gelo ao fundo.",
+          "paragraph": "O gelo brilha frio."
+        },
+        {
+          "image": "/stories/alaska-lili/page-3.svg",
+          "alt": "A familia acenando para uma baleia no mar.",
+          "paragraph": "Lili canta e sorri."
+        }
+      ]
+    },
+    {
+      "id": "joao-pessoa",
+      "title": "Ferias em Joao Pessoa",
+      "description": "Na praia, o pe toca a areia, o sol sorri e a onda passeia.",
+      "level": "iniciante",
+      "coverImage": "/stories/joao-pessoa/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/joao-pessoa/page-1.svg",
+          "alt": "Praia em Joao Pessoa com sol, coqueiros e mar calmo.",
+          "paragraph": "Joao Pessoa tem areia."
+        },
+        {
+          "image": "/stories/joao-pessoa/page-2.svg",
+          "alt": "Uma crianca brincando perto da agua com um baldinho.",
+          "paragraph": "A onda vem e passeia."
+        },
+        {
+          "image": "/stories/joao-pessoa/page-3.svg",
+          "alt": "A familia vendo o sol nascer na praia.",
+          "paragraph": "O sol sorri na areia."
+        }
+      ]
+    },
+    {
+      "id": "kayak-vancouver",
+      "title": "Kayak com papai",
+      "description": "No kayak em Vancouver, papai pesca no mar e ve o peixe pular.",
+      "level": "iniciante",
+      "coverImage": "/stories/kayak-vancouver/cover.svg",
+      "pages": [
+        {
+          "image": "/stories/kayak-vancouver/page-1.svg",
+          "alt": "Papai e crianca em um kayak azul no mar de Vancouver.",
+          "paragraph": "Papai vai no kayak."
+        },
+        {
+          "image": "/stories/kayak-vancouver/page-2.svg",
+          "alt": "Papai segurando uma vara de pesca enquanto o kayak balanca.",
+          "paragraph": "A vara vai balancar."
+        },
+        {
+          "image": "/stories/kayak-vancouver/page-3.svg",
+          "alt": "Um peixe pulando perto do kayak com Vancouver ao fundo.",
+          "paragraph": "O peixe quer pular."
+        }
+      ]
     }
   ]
 }
