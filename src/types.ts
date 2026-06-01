@@ -6,6 +6,7 @@ export type StoryPage = {
 
 export type Story = {
   id: string;
+  slug: string;
   title: string;
   description: string;
   level: string;

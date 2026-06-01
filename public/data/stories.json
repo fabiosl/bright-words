@@ -11,204 +11,61 @@
         {
           "image": "/stories/lila-moonbeam/page-1.png",
           "alt": "Lila sees a tiny silver moonbeam sleeping on her windowsill.",
-          "paragraph": "Lila woke up. A tiny moonbeam was sleeping on her windowsill. \"Hello,\" whispered Lila. The moonbeam blinked and smiled."
+          "paragraph": "Lila woke up. A tiny moonbeam slept by her window."
         },
         {
           "image": "/stories/lila-moonbeam/page-2.png",
           "alt": "Lila gently pulls the tiny moonbeam in a red toy wagon.",
-          "paragraph": "The moonbeam was too sleepy to fly home. So Lila put it in her little red wagon. She pulled it softly across the room. Bump, bump, shhh."
+          "paragraph": "Lila put it in her red wagon. She pulled it softly."
         },
         {
           "image": "/stories/lila-moonbeam/page-3.png",
           "alt": "Lila makes a little stairway with pillows and blocks for the moonbeam.",
-          "paragraph": "Lila made a stairway with pillows and blocks. Up, up, up went the moonbeam. \"Almost home!\" said Lila. The moon smiled from the sky."
+          "paragraph": "She made stairs with blocks. The moonbeam climbed home."
         },
         {
           "image": "/stories/lila-moonbeam/page-4.png",
           "alt": "The moonbeam waves from the sky while Lila smiles in bed.",
-          "paragraph": "The moonbeam waved goodbye. Lila waved back from her bed. \"Good night, little moonbeam,\" she said. And Lila fell asleep with a happy smile."
+          "paragraph": "Moral: Kind help can light the night."
         }
-      ]
+      ],
+      "slug": "lila-and-the-little-moonbeam"
     },
     {
-      "id": "sunny-park",
-      "title": "Mia no parque",
-      "description": "Mia vai ao jardim, pula feliz e sorri no fim.",
+      "id": "tres-porquinhos",
+      "title": "Os três porquinhos",
+      "description": "Três irmãos constroem seus lares e descobrem que paciência também é cuidado.",
       "level": "iniciante",
       "language": "pt-BR",
-      "coverImage": "/stories/sunny-park/cover.svg",
+      "coverImage": "/stories/tres-porquinhos/cover.png",
       "pages": [
         {
-          "image": "/stories/sunny-park/page-1.svg",
-          "alt": "Mia em um caminho ensolarado do parque, com árvores e flores.",
-          "paragraph": "Mia vai ao jardim."
+          "image": "/stories/tres-porquinhos/page-1.png",
+          "alt": "Três porquinhos carregam palha, madeira e tijolos.",
+          "paragraph": "Três porquinhos saíram pelo campo. Cada um queria fazer uma casa. O mais novo levou palha macia."
         },
         {
-          "image": "/stories/sunny-park/page-2.svg",
-          "alt": "Mia olhando uma pipa vermelha voar sobre uma colina verde.",
-          "paragraph": "Ela pula bem assim."
+          "image": "/stories/tres-porquinhos/page-2.png",
+          "alt": "Um porquinho feliz perto de uma casa de palha.",
+          "paragraph": "A casa de palha ficou pronta rápido. O porquinho riu e dançou. Mas a parede tremia com o vento."
         },
         {
-          "image": "/stories/sunny-park/page-3.svg",
-          "alt": "Mia sentada em uma manta com um lanche e um cachorro sorridente por perto.",
-          "paragraph": "Mia sorri no fim."
+          "image": "/stories/tres-porquinhos/page-3.png",
+          "alt": "Um porquinho construindo uma casa de madeira.",
+          "paragraph": "O segundo porquinho usou madeira. Ele martelou com alegria. A casa ficou bonita, mas ainda leve."
+        },
+        {
+          "image": "/stories/tres-porquinhos/page-4.png",
+          "alt": "Um porquinho construindo uma casa forte de tijolos.",
+          "paragraph": "O terceiro porquinho escolheu tijolos. Ele trabalhou devagar e com cuidado. No fim, todos ficaram seguros."
+        },
+        {
+          "image": "/stories/tres-porquinhos/page-5.png",
+          "alt": "Os três porquinhos felizes diante da casa forte de tijolos.",
+          "paragraph": "Moral: Fazer com capricho leva mais tempo. Mas protege quem a gente ama."
         }
-      ]
-    },
-    {
-      "id": "moon-bus",
-      "title": "Ônibus da lua",
-      "description": "Noah sobe para viajar, vê estrelas e quer sonhar.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/moon-bus/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/moon-bus/page-1.svg",
-          "alt": "Um ônibus azul e amigável esperando sob um céu roxo.",
-          "paragraph": "Noah sobe para viajar."
-        },
-        {
-          "image": "/stories/moon-bus/page-2.svg",
-          "alt": "O ônibus da lua andando em uma estrada acima de nuvens macias.",
-          "paragraph": "A estrela vem brilhar."
-        },
-        {
-          "image": "/stories/moon-bus/page-3.svg",
-          "alt": "Noah acenando para a lua pela janela do ônibus.",
-          "paragraph": "A lua quer sonhar."
-        }
-      ]
-    },
-    {
-      "id": "benjamin-nasa",
-      "title": "Benjamin na NASA",
-      "description": "Benjamin vai de foguete, vê a Terra e sorri contente.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/benjamin-nasa/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/benjamin-nasa/page-1.svg",
-          "alt": "Benjamin chegando feliz ao prédio da NASA com foguetes ao fundo.",
-          "paragraph": "Benjamin chega à NASA."
-        },
-        {
-          "image": "/stories/benjamin-nasa/page-2.svg",
-          "alt": "Benjamin vestindo um traje espacial branco ao lado de um capacete.",
-          "paragraph": "Ele veste a roupa clara."
-        },
-        {
-          "image": "/stories/benjamin-nasa/page-3.svg",
-          "alt": "Benjamin sentado dentro de um foguete pronto para decolar.",
-          "paragraph": "O foguete passa e dispara."
-        },
-        {
-          "image": "/stories/benjamin-nasa/page-4.svg",
-          "alt": "Benjamin olhando a Terra azul pela janela da nave.",
-          "paragraph": "A Terra brilha e ampara."
-        }
-      ]
-    },
-    {
-      "id": "olivia-langley",
-      "title": "Olivia em Langley",
-      "description": "Olivia nasceu em Langley, chegou com amor e trouxe calor.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/olivia-langley/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/olivia-langley/page-1.svg",
-          "alt": "Uma família feliz chegando ao hospital em Langley.",
-          "paragraph": "Olivia veio em Langley."
-        },
-        {
-          "image": "/stories/olivia-langley/page-2.svg",
-          "alt": "Olivia bebê dormindo em um cobertor rosa.",
-          "paragraph": "Veio cheia de amor."
-        },
-        {
-          "image": "/stories/olivia-langley/page-3.svg",
-          "alt": "A família olhando Olivia com carinho perto da janela.",
-          "paragraph": "A casa ganhou calor."
-        }
-      ]
-    },
-    {
-      "id": "alaska-lili",
-      "title": "Alaska com vovó Lili",
-      "description": "No cruzeiro, Lili sorri, vê gelo e canta aqui.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/alaska-lili/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/alaska-lili/page-1.svg",
-          "alt": "Um navio de cruzeiro navegando perto de montanhas no Alaska.",
-          "paragraph": "Lili vai no navio."
-        },
-        {
-          "image": "/stories/alaska-lili/page-2.svg",
-          "alt": "Vovó Lili sorrindo no deque do navio com gelo ao fundo.",
-          "paragraph": "O gelo brilha frio."
-        },
-        {
-          "image": "/stories/alaska-lili/page-3.svg",
-          "alt": "A família acenando para uma baleia no mar.",
-          "paragraph": "Lili canta e sorri."
-        }
-      ]
-    },
-    {
-      "id": "joao-pessoa",
-      "title": "Férias em João Pessoa",
-      "description": "Na praia, o pé toca a areia, o sol sorri e a onda passeia.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/joao-pessoa/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/joao-pessoa/page-1.svg",
-          "alt": "Praia em João Pessoa com sol, coqueiros e mar calmo.",
-          "paragraph": "João Pessoa tem areia."
-        },
-        {
-          "image": "/stories/joao-pessoa/page-2.svg",
-          "alt": "Uma criança brincando perto da água com um baldinho.",
-          "paragraph": "A onda vem e passeia."
-        },
-        {
-          "image": "/stories/joao-pessoa/page-3.svg",
-          "alt": "A família vendo o sol nascer na praia.",
-          "paragraph": "O sol sorri na areia."
-        }
-      ]
-    },
-    {
-      "id": "kayak-vancouver",
-      "title": "Kayak com papai",
-      "description": "No kayak em Vancouver, papai pesca no mar e vê o peixe pular.",
-      "level": "iniciante",
-      "language": "pt-BR",
-      "coverImage": "/stories/kayak-vancouver/cover.svg",
-      "pages": [
-        {
-          "image": "/stories/kayak-vancouver/page-1.svg",
-          "alt": "Papai e criança em um kayak azul no mar de Vancouver.",
-          "paragraph": "Papai vai no kayak."
-        },
-        {
-          "image": "/stories/kayak-vancouver/page-2.svg",
-          "alt": "Papai segurando uma vara de pesca enquanto o kayak balança.",
-          "paragraph": "A vara vai balançar."
-        },
-        {
-          "image": "/stories/kayak-vancouver/page-3.svg",
-          "alt": "Um peixe pulando perto do kayak com Vancouver ao fundo.",
-          "paragraph": "O peixe quer pular."
-        }
-      ]
+      ],
+      "slug": "os-tres-porquinhos"
     }
   ]
 }

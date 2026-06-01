@@ -32,11 +32,45 @@ export function App() {
     loadStories();
   }, []);
 
+  useEffect(() => {
+    if (stories.length === 0) {
+      return;
+    }
+
+    function syncStoryFromPath() {
+      const slug = getStorySlugFromPath();
+      if (!slug) {
+        setActiveStoryId(null);
+        return;
+      }
+
+      const story = stories.find((candidate) => getStorySlug(candidate) === slug);
+      setActiveStoryId(story?.id ?? null);
+    }
+
+    syncStoryFromPath();
+    window.addEventListener('popstate', syncStoryFromPath);
+    return () => window.removeEventListener('popstate', syncStoryFromPath);
+  }, [stories]);
+
   const activeStory = stories.find((story) => story.id === activeStoryId) ?? null;
   const view: View = activeStory ? 'reader' : 'library';
 
   function openStory(story: Story) {
+    const nextPath = `/stories/${getStorySlug(story)}`;
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
+
     setActiveStoryId(story.id);
+  }
+
+  function backToLibrary() {
+    if (window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+    }
+
+    setActiveStoryId(null);
   }
 
   function updateProgress(storyId: string, nextProgress: StoryProgress) {
@@ -77,7 +111,7 @@ export function App() {
         <StoryReader
           story={activeStory}
           savedProgress={progress[activeStory.id]}
-          onBackToLibrary={() => setActiveStoryId(null)}
+          onBackToLibrary={backToLibrary}
           onProgressChange={updateProgress}
           onResetStory={resetStory}
         />
@@ -204,6 +238,7 @@ function StoryReader({
   const [pageIndex, setPageIndex] = useState(initialProgress.pageIndex);
   const [wordIndex, setWordIndex] = useState(initialProgress.wordIndex);
   const [completed, setCompleted] = useState(initialProgress.completed);
+  const [shareStatus, setShareStatus] = useState('Share');
 
   const currentPage = story.pages[pageIndex];
   const words = useMemo(() => splitWords(currentPage.paragraph), [currentPage.paragraph]);
@@ -291,6 +326,24 @@ function StoryReader({
     setWordIndex(0);
   }
 
+  async function shareStory() {
+    const url = `${window.location.origin}/stories/${getStorySlug(story)}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: story.title, url });
+        return;
+      }
+
+      await navigator.clipboard.writeText(url);
+      setShareStatus('Copied');
+      window.setTimeout(() => setShareStatus('Share'), 1600);
+    } catch {
+      setShareStatus('Copy failed');
+      window.setTimeout(() => setShareStatus('Share'), 1600);
+    }
+  }
+
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'ArrowLeft') {
@@ -323,6 +376,9 @@ function StoryReader({
             Page {pageIndex + 1} of {story.pages.length}
           </p>
         </div>
+        <button className="share-button" type="button" onClick={shareStory}>
+          {shareStatus}
+        </button>
       </header>
 
       <button
@@ -364,12 +420,22 @@ function StoryReader({
               <p className="focus-word" style={{ '--word-scale': getWordScale(activeWord) }}>
                 {activeWord}
               </p>
+            </div>
+
+            <div className="phrase-row">
+              <div className="paragraph-strip" aria-label="Frase completa">
+                {words.map((word, index) => (
+                  <span className={index === wordIndex ? 'active-paragraph-word' : ''} key={`${word}-${index}`}>
+                    {word}
+                  </span>
+                ))}
+              </div>
               <button
-                className="speaker-button"
+                className="speaker-button phrase-speaker-button"
                 type="button"
-                onClick={() => speakWord(activeWord, getStoryLanguage(story))}
-                aria-label={`Read ${activeWord} aloud`}
-                title="Read word aloud"
+                onClick={() => speakText(currentPage.paragraph, getStoryLanguage(story))}
+                aria-label="Ler frase em voz alta"
+                title="Ler frase em voz alta"
               >
                 <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
                   <path d="M4 9v6h4l5 4V5L8 9H4Z" />
@@ -377,14 +443,6 @@ function StoryReader({
                   <path d="M18.5 6a8 8 0 0 1 0 12" />
                 </svg>
               </button>
-            </div>
-
-            <div className="paragraph-strip" aria-label="Frase completa">
-              {words.map((word, index) => (
-                <span className={index === wordIndex ? 'active-paragraph-word' : ''} key={`${word}-${index}`}>
-                  {word}
-                </span>
-              ))}
             </div>
           </div>
         )}
@@ -424,6 +482,15 @@ function getWordScale(word: string) {
   return `${Math.min(16, Math.max(4.5, 92 / letters))}vw`;
 }
 
+function getStorySlug(story: Story) {
+  return story.slug || story.id;
+}
+
+function getStorySlugFromPath() {
+  const match = window.location.pathname.match(/^\/stories\/([^/]+)\/?$/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 function getStoryLanguage(story: Story): LanguageFilter {
   return story.language === 'en-US' ? 'en-US' : 'pt-BR';
 }
@@ -432,7 +499,7 @@ function getLanguageLabel(story: Story) {
   return getStoryLanguage(story) === 'en-US' ? 'English' : 'Portuguese';
 }
 
-function speakWord(word: string, language = 'pt-BR') {
+function speakText(word: string, language = 'pt-BR') {
   if (!('speechSynthesis' in window)) {
     return;
   }
