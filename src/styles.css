@@ -289,28 +289,74 @@ button {
   z-index: 4;
 }
 
-.share-button {
+.reader-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.reader-actions {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.syllable-action-button {
+  align-items: center;
   background: rgba(255, 255, 255, 0.94);
+  border: 3px solid rgba(255, 207, 63, 0.96);
   border-radius: 8px;
   box-shadow: 0 5px 0 rgba(20, 43, 62, 0.35);
   color: #183048;
   cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
   font-size: 0.95rem;
-  font-weight: 900;
-  margin-left: auto;
-  min-height: 44px;
-  min-width: 94px;
-  padding: 10px 16px;
+  font-weight: 950;
+  gap: 8px;
+  min-height: 46px;
+  min-width: 112px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 12px;
   transition:
     transform 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    background 160ms ease;
 }
 
-.share-button:hover {
+.active-syllable-action-button {
+  background: #ffcf3f;
+  border-color: #ffffff;
+}
+
+.syllable-checkmark {
+  border-bottom: 4px solid currentColor;
+  border-left: 4px solid currentColor;
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 10px;
+  opacity: 0.22;
+  transform: rotate(-45deg) scale(0.9);
+  transform-origin: center;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+  width: 18px;
+}
+
+.active-syllable-action-button .syllable-checkmark {
+  color: #ffffff;
+  opacity: 1;
+  transform: rotate(-45deg) scale(1);
+}
+
+.syllable-action-button:hover {
   transform: translateY(-2px);
 }
 
-.share-button:active {
+.syllable-action-button:active {
   box-shadow: none;
   transform: translateY(3px);
 }
@@ -332,7 +378,10 @@ button {
 .reader-kicker,
 .reader-count {
   margin: 0;
+  overflow: hidden;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.42);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .reader-kicker {
@@ -660,11 +709,19 @@ button {
     top: 8px;
   }
 
-  .share-button {
+  .syllable-action-button {
+    box-shadow: 0 3px 0 rgba(20, 43, 62, 0.35);
     font-size: 0.82rem;
-    min-height: 38px;
-    min-width: 74px;
-    padding: 8px 10px;
+    min-height: 40px;
+    min-width: 98px;
+    padding: 0 8px;
+  }
+
+  .syllable-checkmark {
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    height: 8px;
+    width: 15px;
   }
 
   .round-button {
