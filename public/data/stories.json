@@ -12,25 +12,29 @@
           "image": "/stories/lila-moonbeam/page-1.png",
           "alt": "Lila sees a tiny silver moonbeam sleeping on her windowsill.",
           "paragraph": "Lila woke up. A tiny moonbeam slept by her window.",
-          "audio": "/stories/lila-moonbeam/audio/page-1.mp3"
+          "audio": "/stories/lila-moonbeam/audio/page-1.mp3",
+          "audioTimings": "/stories/lila-moonbeam/audio/page-1.timings.json"
         },
         {
           "image": "/stories/lila-moonbeam/page-2.png",
           "alt": "Lila gently pulls the tiny moonbeam in a red toy wagon.",
           "paragraph": "Lila put it in her red wagon. She pulled it softly.",
-          "audio": "/stories/lila-moonbeam/audio/page-2.mp3"
+          "audio": "/stories/lila-moonbeam/audio/page-2.mp3",
+          "audioTimings": "/stories/lila-moonbeam/audio/page-2.timings.json"
         },
         {
           "image": "/stories/lila-moonbeam/page-3.png",
           "alt": "Lila makes a little stairway with pillows and blocks for the moonbeam.",
           "paragraph": "She made stairs with blocks. The moonbeam climbed home.",
-          "audio": "/stories/lila-moonbeam/audio/page-3.mp3"
+          "audio": "/stories/lila-moonbeam/audio/page-3.mp3",
+          "audioTimings": "/stories/lila-moonbeam/audio/page-3.timings.json"
         },
         {
           "image": "/stories/lila-moonbeam/page-4.png",
           "alt": "The moonbeam waves from the sky while Lila smiles in bed.",
           "paragraph": "Moral: Kind help can light the night.",
-          "audio": "/stories/lila-moonbeam/audio/page-4.mp3"
+          "audio": "/stories/lila-moonbeam/audio/page-4.mp3",
+          "audioTimings": "/stories/lila-moonbeam/audio/page-4.timings.json"
         }
       ],
       "slug": "lila-and-the-little-moonbeam"
@@ -47,34 +51,85 @@
           "image": "/stories/tres-porquinhos/page-1.png",
           "alt": "Três porquinhos carregam palha, madeira e tijolos.",
           "paragraph": "Três porquinhos saíram pelo campo. Cada um queria fazer uma casa. O mais novo levou palha macia.",
-          "audio": "/stories/tres-porquinhos/audio/page-1.mp3"
+          "audio": "/stories/tres-porquinhos/audio/page-1.mp3",
+          "audioTimings": "/stories/tres-porquinhos/audio/page-1.timings.json"
         },
         {
           "image": "/stories/tres-porquinhos/page-2.png",
           "alt": "Um porquinho feliz perto de uma casa de palha.",
           "paragraph": "A casa de palha ficou pronta rápido. O porquinho riu e dançou. Mas a parede tremia com o vento.",
-          "audio": "/stories/tres-porquinhos/audio/page-2.mp3"
+          "audio": "/stories/tres-porquinhos/audio/page-2.mp3",
+          "audioTimings": "/stories/tres-porquinhos/audio/page-2.timings.json"
         },
         {
           "image": "/stories/tres-porquinhos/page-3.png",
           "alt": "Um porquinho construindo uma casa de madeira.",
           "paragraph": "O segundo porquinho usou madeira. Ele martelou com alegria. A casa ficou bonita, mas ainda leve.",
-          "audio": "/stories/tres-porquinhos/audio/page-3.mp3"
+          "audio": "/stories/tres-porquinhos/audio/page-3.mp3",
+          "audioTimings": "/stories/tres-porquinhos/audio/page-3.timings.json"
         },
         {
           "image": "/stories/tres-porquinhos/page-4.png",
           "alt": "Um porquinho construindo uma casa forte de tijolos.",
           "paragraph": "O terceiro porquinho escolheu tijolos. Ele trabalhou devagar e com cuidado. No fim, todos ficaram seguros.",
-          "audio": "/stories/tres-porquinhos/audio/page-4.mp3"
+          "audio": "/stories/tres-porquinhos/audio/page-4.mp3",
+          "audioTimings": "/stories/tres-porquinhos/audio/page-4.timings.json"
         },
         {
           "image": "/stories/tres-porquinhos/page-5.png",
           "alt": "Os três porquinhos felizes diante da casa forte de tijolos.",
           "paragraph": "Moral: Fazer com capricho leva mais tempo. Mas protege quem a gente ama.",
-          "audio": "/stories/tres-porquinhos/audio/page-5.mp3"
+          "audio": "/stories/tres-porquinhos/audio/page-5.mp3",
+          "audioTimings": "/stories/tres-porquinhos/audio/page-5.timings.json"
         }
       ],
       "slug": "os-tres-porquinhos"
+    },
+    {
+      "id": "pedra-do-inga",
+      "title": "A pedra que guarda desenhos",
+      "description": "Lia visita a Pedra do Ingá e aprende a cuidar da memória da Paraíba.",
+      "level": "iniciante",
+      "language": "pt-BR",
+      "coverImage": "/stories/pedra-do-inga/cover.png",
+      "pages": [
+        {
+          "image": "/stories/pedra-do-inga/page-1.png",
+          "alt": "Lia e sua avó observam uma grande pedra com desenhos antigos no Ingá.",
+          "paragraph": "Lia foi passear no Ingá. Viu uma pedra no chão. Tinha risco e sinal. Parecia até canção.",
+          "audio": "/stories/pedra-do-inga/audio/page-1.mp3",
+          "audioTimings": "/stories/pedra-do-inga/audio/page-1.timings.json"
+        },
+        {
+          "image": "/stories/pedra-do-inga/page-2.png",
+          "alt": "Lia aponta para os desenhos da pedra enquanto sua avó explica com carinho.",
+          "paragraph": "Lia perguntou bem baixinho. Quem desenhou isso aqui? Vovó sorriu e contou. Veio de um tempo dali.",
+          "audio": "/stories/pedra-do-inga/audio/page-2.mp3",
+          "audioTimings": "/stories/pedra-do-inga/audio/page-2.timings.json"
+        },
+        {
+          "image": "/stories/pedra-do-inga/page-3.png",
+          "alt": "Lia olha com atenção os traços, curvas e pontinhos gravados na pedra.",
+          "paragraph": "Tinha curva e pontinho. Tinha marca no paredão. Lia olhou com cuidado. E guardou no coração.",
+          "audio": "/stories/pedra-do-inga/audio/page-3.mp3",
+          "audioTimings": "/stories/pedra-do-inga/audio/page-3.timings.json"
+        },
+        {
+          "image": "/stories/pedra-do-inga/page-4.png",
+          "alt": "Lia respeita a pedra antiga e mantém a mão longe dos desenhos.",
+          "paragraph": "Ela não riscou a pedra. Só olhou com atenção. Pedra antiga é memória. Disse vovó com emoção.",
+          "audio": "/stories/pedra-do-inga/audio/page-4.mp3",
+          "audioTimings": "/stories/pedra-do-inga/audio/page-4.timings.json"
+        },
+        {
+          "image": "/stories/pedra-do-inga/page-5.png",
+          "alt": "Lia e sua avó caminham ao pôr do sol, olhando para a Pedra do Ingá.",
+          "paragraph": "Lia aprendeu no caminho. Cuidar também faz história. Moral: Respeitar o passado guarda nossa memória.",
+          "audio": "/stories/pedra-do-inga/audio/page-5.mp3",
+          "audioTimings": "/stories/pedra-do-inga/audio/page-5.timings.json"
+        }
+      ],
+      "slug": "a-pedra-que-guarda-desenhos"
     }
   ]
 }

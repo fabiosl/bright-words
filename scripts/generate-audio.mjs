@@ -21,17 +21,19 @@ for (const story of data.stories) {
 
   for (const [index, page] of story.pages.entries()) {
     const fileName = `page-${index + 1}.mp3`;
+    const timingsFileName = `page-${index + 1}.timings.json`;
     const outputPath = path.join(audioDir, fileName);
+    const timingsPath = path.join(audioDir, timingsFileName);
     page.audio = `/stories/${story.id}/audio/${fileName}`;
+    page.audioTimings = `/stories/${story.id}/audio/${timingsFileName}`;
 
-    if (await exists(outputPath)) {
+    if ((await exists(outputPath)) && (await exists(timingsPath))) {
       continue;
     }
 
     console.log(`Generating ${page.audio}`);
     await run(python, [
-      '-m',
-      'edge_tts',
+      path.join('scripts', 'generate-edge-audio.py'),
       '--voice',
       voice,
       '--rate=-8%',
@@ -39,6 +41,8 @@ for (const story of data.stories) {
       page.paragraph,
       '--write-media',
       outputPath,
+      '--write-timings',
+      timingsPath,
     ]);
   }
 }

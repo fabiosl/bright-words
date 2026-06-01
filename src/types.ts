@@ -3,6 +3,7 @@ export type StoryPage = {
   alt: string;
   paragraph: string;
   audio?: string;
+  audioTimings?: string;
 };
 
 export type Story = {

@@ -6,7 +6,9 @@ import { splitIntoSyllables } from './syllables';
 type View = 'library' | 'reader';
 type LanguageFilter = 'all' | 'en-US' | 'pt-BR';
 type WordTiming = {
+  start?: number;
   end: number;
+  text?: string;
 };
 
 export function App() {
@@ -14,14 +16,14 @@ export function App() {
   const [progress, setProgress] = useState<ProgressMap>({});
   const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
   const [languageFilter, setLanguageFilter] = useState<LanguageFilter>('all');
-  const [status, setStatus] = useState('Loading stories...');
+  const [status, setStatus] = useState('Carregando histórias...');
 
   useEffect(() => {
     async function loadStories() {
       try {
         const response = await fetch('/data/stories.json');
         if (!response.ok) {
-          throw new Error('Could not load stories.');
+          throw new Error('Não foi possível carregar as histórias.');
         }
 
         const data = (await response.json()) as StoriesResponse;
@@ -29,7 +31,7 @@ export function App() {
         setProgress(readProgress());
         setStatus('');
       } catch {
-        setStatus('Stories are taking a little nap. Please refresh to try again.');
+        setStatus('As histórias estão descansando um pouquinho. Atualize a página para tentar de novo.');
       }
     }
 
@@ -150,35 +152,35 @@ function StoryLibrary({
   return (
     <main className="library-shell">
       <section className="library-heading" aria-labelledby="library-title">
-        <p className="eyebrow">Bright Words</p>
-        <h1 id="library-title">Pick a story</h1>
+        <p className="eyebrow">Palavras brilhantes</p>
+        <h1 id="library-title">Escolha uma história</h1>
       </section>
 
-      <div className="language-filter" aria-label="Filter stories by language">
+      <div className="language-filter" aria-label="Filtrar histórias por idioma">
         <button
           className={languageFilter === 'all' ? 'active-language-filter' : ''}
           type="button"
           onClick={() => onLanguageFilterChange('all')}
         >
-          All
+          Todas
         </button>
         <button
           className={languageFilter === 'en-US' ? 'active-language-filter' : ''}
           type="button"
           onClick={() => onLanguageFilterChange('en-US')}
         >
-          English
+          Inglês
         </button>
         <button
           className={languageFilter === 'pt-BR' ? 'active-language-filter' : ''}
           type="button"
           onClick={() => onLanguageFilterChange('pt-BR')}
         >
-          Portuguese
+          Português
         </button>
       </div>
 
-      <section className="story-grid" aria-label="Stories">
+      <section className="story-grid" aria-label="Histórias">
         {filteredStories.map((story) => {
           const storyProgress = progress[story.id];
           const isStarted = storyProgress && !storyProgress.completed;
@@ -190,9 +192,9 @@ function StoryLibrary({
               <div className="story-card-body">
                 <div className="story-meta">
                   <span>{getLanguageLabel(story)}</span>
-                  <span>{story.level}</span>
-                  {isComplete && <span>Finished</span>}
-                  {isStarted && <span>In progress</span>}
+                  <span>{getLevelLabel(story)}</span>
+                  {isComplete && <span>Concluída</span>}
+                  {isStarted && <span>Em andamento</span>}
                 </div>
                 <h2>{story.title}</h2>
                 <p>{story.description}</p>
@@ -208,11 +210,11 @@ function StoryLibrary({
                       onOpenStory(story);
                     }}
                   >
-                    {isStarted ? 'Resume' : isComplete ? 'Read again' : 'Start'}
+                    {isStarted ? 'Continuar' : isComplete ? 'Ler de novo' : 'Começar'}
                   </button>
                   {(isStarted || isComplete) && (
                     <button className="text-button" type="button" onClick={() => onResetStory(story.id)}>
-                      Restart
+                      Reiniciar
                     </button>
                   )}
                 </div>
@@ -243,6 +245,7 @@ function StoryReader({
   const [wordIndex, setWordIndex] = useState(initialProgress.wordIndex);
   const [completed, setCompleted] = useState(initialProgress.completed);
   const [audioStatus, setAudioStatus] = useState('');
+  const [audioTimings, setAudioTimings] = useState<WordTiming[]>([]);
   const [isShowingSyllables, setIsShowingSyllables] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioFrameRef = useRef<number | null>(null);
@@ -251,6 +254,36 @@ function StoryReader({
   const words = useMemo(() => splitWords(currentPage.paragraph), [currentPage.paragraph]);
   const activeWord = words[wordIndex] ?? '';
   const displayedWord = isShowingSyllables ? splitIntoSyllables(activeWord, story) : activeWord;
+
+  useEffect(() => {
+    let isCurrent = true;
+    setAudioTimings([]);
+
+    if (!currentPage.audioTimings) {
+      return () => {
+        isCurrent = false;
+      };
+    }
+
+    async function loadAudioTimings() {
+      try {
+        const timings = await fetchAudioTimings(currentPage.audioTimings as string);
+        if (isCurrent) {
+          setAudioTimings(timings);
+        }
+      } catch {
+        if (isCurrent) {
+          setAudioTimings([]);
+        }
+      }
+    }
+
+    loadAudioTimings();
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [currentPage.audioTimings]);
 
   const persist = useCallback(
     (nextPageIndex: number, nextWordIndex: number, isCompleted = false) => {
@@ -367,6 +400,12 @@ function StoryReader({
       stopPageAudio(false);
       const playbackPageIndex = pageIndex;
       const playbackWords = [...words];
+      const playbackTimings = currentPage.audioTimings
+        ? await fetchAudioTimings(currentPage.audioTimings)
+        : [...audioTimings];
+      if (playbackTimings.length > 0) {
+        setAudioTimings(playbackTimings);
+      }
       const audio = new Audio(currentPage.audio);
       audioRef.current = audio;
 
@@ -390,7 +429,10 @@ function StoryReader({
 
         if (Number.isFinite(audio.duration) && audio.duration > 0) {
           if (timeline.length === 0) {
-            timeline = buildWordTimeline(playbackWords, audio.duration);
+            timeline =
+              playbackTimings.length === playbackWords.length
+                ? playbackTimings
+                : buildWordTimeline(playbackWords, audio.duration);
           }
 
           updateHighlightedWord(getTimelineWordIndex(timeline, audio.currentTime));
@@ -457,13 +499,13 @@ function StoryReader({
       <div className="reader-scrim" />
 
       <header className="reader-topbar">
-        <button className="round-button home-button" type="button" onClick={onBackToLibrary} aria-label="Back to stories">
+        <button className="round-button home-button" type="button" onClick={onBackToLibrary} aria-label="Voltar para histórias">
           ‹
         </button>
         <div className="reader-title">
           <p className="reader-kicker">{story.title}</p>
           <p className="reader-count">
-            Page {pageIndex + 1} of {story.pages.length}
+            Página {pageIndex + 1} de {story.pages.length}
           </p>
         </div>
         <div className="reader-actions">
@@ -486,7 +528,7 @@ function StoryReader({
         type="button"
         onClick={previousWord}
         disabled={!completed && pageIndex === 0 && wordIndex === 0}
-        aria-label="Previous word"
+        aria-label="Palavra anterior"
       >
         ‹
       </button>
@@ -495,7 +537,7 @@ function StoryReader({
         type="button"
         onClick={nextWord}
         disabled={completed}
-        aria-label="Next word"
+        aria-label="Próxima palavra"
       >
         ›
       </button>
@@ -503,14 +545,14 @@ function StoryReader({
       <section className="focus-stage" aria-live="polite">
         {completed ? (
           <div className="completion-panel">
-            <p className="eyebrow">Great reading</p>
-            <h1>You finished {story.title}!</h1>
+            <p className="eyebrow">Muito bem</p>
+            <h1>Você terminou {story.title}!</h1>
             <div className="completion-actions">
               <button className="primary-button" type="button" onClick={rereadStory}>
-                Read again
+                Ler de novo
               </button>
               <button className="secondary-button" type="button" onClick={onBackToLibrary}>
-                Stories
+                Histórias
               </button>
             </div>
           </div>
@@ -556,14 +598,14 @@ function StoryReader({
 
       {!completed && (
         <footer className="reader-footer">
-          <div className="word-controls" aria-label="Page controls">
+          <div className="word-controls" aria-label="Controles de página">
             <button
               className="secondary-button control-button"
               type="button"
               onClick={() => goToPage(pageIndex - 1)}
               disabled={pageIndex === 0}
             >
-              ‹ Page
+              ‹ Página
             </button>
             <div className="word-progress">
               {pageIndex + 1} / {story.pages.length}
@@ -574,7 +616,7 @@ function StoryReader({
               onClick={() => goToPage(pageIndex + 1)}
               disabled={pageIndex === story.pages.length - 1}
             >
-              Page ›
+              Página ›
             </button>
           </div>
         </footer>
@@ -607,13 +649,38 @@ function buildWordTimeline(words: string[], duration: number): WordTiming[] {
   });
 }
 
+async function fetchAudioTimings(url: string) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Não foi possível carregar a sincronização do áudio.');
+  }
+
+  return (await response.json()) as WordTiming[];
+}
+
 function getTimelineWordIndex(timeline: WordTiming[], currentTime: number) {
   if (timeline.length === 0) {
     return 0;
   }
 
-  const index = timeline.findIndex((item) => currentTime <= item.end);
-  return index === -1 ? timeline.length - 1 : index;
+  if (currentTime <= (timeline[0].start ?? 0)) {
+    return 0;
+  }
+
+  for (let index = 0; index < timeline.length; index += 1) {
+    const current = timeline[index];
+    const next = timeline[index + 1];
+
+    if (currentTime >= (current.start ?? 0) && currentTime <= current.end) {
+      return index;
+    }
+
+    if (next && currentTime > current.end && currentTime < (next.start ?? current.end)) {
+      return index;
+    }
+  }
+
+  return timeline.length - 1;
 }
 
 function getStorySlug(story: Story) {
@@ -626,10 +693,6 @@ function getStorySlugFromPath() {
 }
 
 function getSyllableToggleAriaLabel(story: Story, isActive: boolean) {
-  if (getStoryLanguage(story) === 'en-US') {
-    return isActive ? 'Hide syllables' : 'Show syllables';
-  }
-
   return isActive ? 'Ocultar sílabas' : 'Ativar sílabas';
 }
 
@@ -638,5 +701,15 @@ function getStoryLanguage(story: Story): LanguageFilter {
 }
 
 function getLanguageLabel(story: Story) {
-  return getStoryLanguage(story) === 'en-US' ? 'English' : 'Portuguese';
+  return getStoryLanguage(story) === 'en-US' ? 'Inglês' : 'Português';
+}
+
+function getLevelLabel(story: Story) {
+  const normalizedLevel = story.level.toLowerCase();
+
+  if (normalizedLevel === 'beginner' || normalizedLevel === 'early') {
+    return 'iniciante';
+  }
+
+  return story.level;
 }
