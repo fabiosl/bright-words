@@ -238,6 +238,7 @@ function StoryReader({
   const [pageIndex, setPageIndex] = useState(initialProgress.pageIndex);
   const [wordIndex, setWordIndex] = useState(initialProgress.wordIndex);
   const [completed, setCompleted] = useState(initialProgress.completed);
+  const [audioStatus, setAudioStatus] = useState('');
   const [shareStatus, setShareStatus] = useState('Share');
 
   const currentPage = story.pages[pageIndex];
@@ -324,6 +325,22 @@ function StoryReader({
     setCompleted(false);
     setPageIndex(0);
     setWordIndex(0);
+  }
+
+  async function playPageAudio() {
+    if (!currentPage.audio) {
+      setAudioStatus('Áudio indisponível');
+      window.setTimeout(() => setAudioStatus(''), 1600);
+      return;
+    }
+
+    try {
+      const audio = new Audio(currentPage.audio);
+      await audio.play();
+    } catch {
+      setAudioStatus('Toque novamente');
+      window.setTimeout(() => setAudioStatus(''), 1600);
+    }
   }
 
   async function shareStory() {
@@ -433,7 +450,7 @@ function StoryReader({
               <button
                 className="speaker-button phrase-speaker-button"
                 type="button"
-                onClick={() => speakText(currentPage.paragraph, getStoryLanguage(story))}
+                onClick={playPageAudio}
                 aria-label="Ler frase em voz alta"
                 title="Ler frase em voz alta"
               >
@@ -443,6 +460,7 @@ function StoryReader({
                   <path d="M18.5 6a8 8 0 0 1 0 12" />
                 </svg>
               </button>
+              {audioStatus && <span className="audio-status">{audioStatus}</span>}
             </div>
           </div>
         )}
@@ -497,23 +515,4 @@ function getStoryLanguage(story: Story): LanguageFilter {
 
 function getLanguageLabel(story: Story) {
   return getStoryLanguage(story) === 'en-US' ? 'English' : 'Portuguese';
-}
-
-function speakText(word: string, language = 'pt-BR') {
-  if (!('speechSynthesis' in window)) {
-    return;
-  }
-
-  const text = word.replace(/[.,!?;:"“”]/g, '').trim();
-  if (!text) {
-    return;
-  }
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = language;
-  utterance.rate = 0.85;
-  utterance.pitch = 1.05;
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
 }

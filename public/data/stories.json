@@ -11,22 +11,26 @@
         {
           "image": "/stories/lila-moonbeam/page-1.png",
           "alt": "Lila sees a tiny silver moonbeam sleeping on her windowsill.",
-          "paragraph": "Lila woke up. A tiny moonbeam slept by her window."
+          "paragraph": "Lila woke up. A tiny moonbeam slept by her window.",
+          "audio": "/stories/lila-moonbeam/audio/page-1.mp3"
         },
         {
           "image": "/stories/lila-moonbeam/page-2.png",
           "alt": "Lila gently pulls the tiny moonbeam in a red toy wagon.",
-          "paragraph": "Lila put it in her red wagon. She pulled it softly."
+          "paragraph": "Lila put it in her red wagon. She pulled it softly.",
+          "audio": "/stories/lila-moonbeam/audio/page-2.mp3"
         },
         {
           "image": "/stories/lila-moonbeam/page-3.png",
           "alt": "Lila makes a little stairway with pillows and blocks for the moonbeam.",
-          "paragraph": "She made stairs with blocks. The moonbeam climbed home."
+          "paragraph": "She made stairs with blocks. The moonbeam climbed home.",
+          "audio": "/stories/lila-moonbeam/audio/page-3.mp3"
         },
         {
           "image": "/stories/lila-moonbeam/page-4.png",
           "alt": "The moonbeam waves from the sky while Lila smiles in bed.",
-          "paragraph": "Moral: Kind help can light the night."
+          "paragraph": "Moral: Kind help can light the night.",
+          "audio": "/stories/lila-moonbeam/audio/page-4.mp3"
         }
       ],
       "slug": "lila-and-the-little-moonbeam"
@@ -42,27 +46,32 @@
         {
           "image": "/stories/tres-porquinhos/page-1.png",
           "alt": "Três porquinhos carregam palha, madeira e tijolos.",
-          "paragraph": "Três porquinhos saíram pelo campo. Cada um queria fazer uma casa. O mais novo levou palha macia."
+          "paragraph": "Três porquinhos saíram pelo campo. Cada um queria fazer uma casa. O mais novo levou palha macia.",
+          "audio": "/stories/tres-porquinhos/audio/page-1.mp3"
         },
         {
           "image": "/stories/tres-porquinhos/page-2.png",
           "alt": "Um porquinho feliz perto de uma casa de palha.",
-          "paragraph": "A casa de palha ficou pronta rápido. O porquinho riu e dançou. Mas a parede tremia com o vento."
+          "paragraph": "A casa de palha ficou pronta rápido. O porquinho riu e dançou. Mas a parede tremia com o vento.",
+          "audio": "/stories/tres-porquinhos/audio/page-2.mp3"
         },
         {
           "image": "/stories/tres-porquinhos/page-3.png",
           "alt": "Um porquinho construindo uma casa de madeira.",
-          "paragraph": "O segundo porquinho usou madeira. Ele martelou com alegria. A casa ficou bonita, mas ainda leve."
+          "paragraph": "O segundo porquinho usou madeira. Ele martelou com alegria. A casa ficou bonita, mas ainda leve.",
+          "audio": "/stories/tres-porquinhos/audio/page-3.mp3"
         },
         {
           "image": "/stories/tres-porquinhos/page-4.png",
           "alt": "Um porquinho construindo uma casa forte de tijolos.",
-          "paragraph": "O terceiro porquinho escolheu tijolos. Ele trabalhou devagar e com cuidado. No fim, todos ficaram seguros."
+          "paragraph": "O terceiro porquinho escolheu tijolos. Ele trabalhou devagar e com cuidado. No fim, todos ficaram seguros.",
+          "audio": "/stories/tres-porquinhos/audio/page-4.mp3"
         },
         {
           "image": "/stories/tres-porquinhos/page-5.png",
           "alt": "Os três porquinhos felizes diante da casa forte de tijolos.",
-          "paragraph": "Moral: Fazer com capricho leva mais tempo. Mas protege quem a gente ama."
+          "paragraph": "Moral: Fazer com capricho leva mais tempo. Mas protege quem a gente ama.",
+          "audio": "/stories/tres-porquinhos/audio/page-5.mp3"
         }
       ],
       "slug": "os-tres-porquinhos"

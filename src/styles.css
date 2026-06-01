@@ -472,12 +472,26 @@ button {
   gap: clamp(10px, 2vw, 16px);
   grid-template-columns: minmax(0, 1fr) auto;
   max-width: min(980px, 100%);
+  position: relative;
   width: 100%;
 }
 
 .phrase-speaker-button {
   height: clamp(56px, 7vw, 76px);
   width: clamp(56px, 7vw, 76px);
+}
+
+.audio-status {
+  background: rgba(24, 48, 72, 0.86);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 7px 10px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  white-space: nowrap;
 }
 
 .reader-footer {

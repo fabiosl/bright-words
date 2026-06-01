@@ -2,6 +2,7 @@ export type StoryPage = {
   image: string;
   alt: string;
   paragraph: string;
+  audio?: string;
 };
 
 export type Story = {
