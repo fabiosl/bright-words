@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { ProgressMap, StoriesResponse, Story, StoryProgress } from './types';
-import { clampProgress, clearStoryProgress, readProgress, saveStoryProgress, splitWords } from './storyUtils';
+import type { StoriesResponse, Story } from './types';
+import { splitWords } from './storyUtils';
 import { splitIntoSyllables } from './syllables';
 
-type View = 'library' | 'reader';
+type View = 'library' | 'mode-select' | 'reader';
 type LanguageFilter = 'all' | 'en-US' | 'pt-BR';
+type ReadingMode = 'read-aloud' | 'independent' | 'learning';
+type ActiveSession = {
+  storyId: string;
+  mode: ReadingMode;
+};
 type WordTiming = {
   start?: number;
   end: number;
@@ -13,8 +18,8 @@ type WordTiming = {
 
 export function App() {
   const [stories, setStories] = useState<Story[]>([]);
-  const [progress, setProgress] = useState<ProgressMap>({});
-  const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
+  const [selectedStoryId, setSelectedStoryId] = useState<string | null>(null);
+  const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [languageFilter, setLanguageFilter] = useState<LanguageFilter>('all');
   const [status, setStatus] = useState('Carregando histórias...');
 
@@ -28,7 +33,6 @@ export function App() {
 
         const data = (await response.json()) as StoriesResponse;
         setStories(data.stories);
-        setProgress(readProgress());
         setStatus('');
       } catch {
         setStatus('As histórias estão descansando um pouquinho. Atualize a página para tentar de novo.');
@@ -46,12 +50,14 @@ export function App() {
     function syncStoryFromPath() {
       const slug = getStorySlugFromPath();
       if (!slug) {
-        setActiveStoryId(null);
+        setSelectedStoryId(null);
+        setActiveSession(null);
         return;
       }
 
       const story = stories.find((candidate) => getStorySlug(candidate) === slug);
-      setActiveStoryId(story?.id ?? null);
+      setSelectedStoryId(story?.id ?? null);
+      setActiveSession(null);
     }
 
     syncStoryFromPath();
@@ -59,8 +65,9 @@ export function App() {
     return () => window.removeEventListener('popstate', syncStoryFromPath);
   }, [stories]);
 
-  const activeStory = stories.find((story) => story.id === activeStoryId) ?? null;
-  const view: View = activeStory ? 'reader' : 'library';
+  const selectedStory = stories.find((story) => story.id === selectedStoryId) ?? null;
+  const activeStory = stories.find((story) => story.id === activeSession?.storyId) ?? null;
+  const view: View = activeSession && activeStory ? 'reader' : selectedStory ? 'mode-select' : 'library';
 
   function openStory(story: Story) {
     const nextPath = `/stories/${getStorySlug(story)}`;
@@ -68,7 +75,18 @@ export function App() {
       window.history.pushState({}, '', nextPath);
     }
 
-    setActiveStoryId(story.id);
+    setSelectedStoryId(story.id);
+    setActiveSession(null);
+  }
+
+  function startReading(story: Story, mode: ReadingMode) {
+    const nextPath = `/stories/${getStorySlug(story)}`;
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
+
+    setSelectedStoryId(story.id);
+    setActiveSession({ storyId: story.id, mode });
   }
 
   function backToLibrary() {
@@ -76,21 +94,12 @@ export function App() {
       window.history.pushState({}, '', '/');
     }
 
-    setActiveStoryId(null);
+    setSelectedStoryId(null);
+    setActiveSession(null);
   }
 
-  function updateProgress(storyId: string, nextProgress: StoryProgress) {
-    saveStoryProgress(storyId, nextProgress);
-    setProgress((current) => ({ ...current, [storyId]: nextProgress }));
-  }
-
-  function resetStory(storyId: string) {
-    clearStoryProgress(storyId);
-    setProgress((current) => {
-      const next = { ...current };
-      delete next[storyId];
-      return next;
-    });
+  function backToModeSelection() {
+    setActiveSession(null);
   }
 
   if (status) {
@@ -106,20 +115,21 @@ export function App() {
       {view === 'library' && (
         <StoryLibrary
           stories={stories}
-          progress={progress}
           languageFilter={languageFilter}
           onLanguageFilterChange={setLanguageFilter}
           onOpenStory={openStory}
-          onResetStory={resetStory}
         />
       )}
-      {activeStory && (
+      {view === 'mode-select' && selectedStory && (
+        <StoryModeSelection story={selectedStory} onBackToLibrary={backToLibrary} onStartReading={startReading} />
+      )}
+      {view === 'reader' && activeStory && activeSession && (
         <StoryReader
+          key={`${activeStory.id}-${activeSession.mode}`}
           story={activeStory}
-          savedProgress={progress[activeStory.id]}
+          mode={activeSession.mode}
           onBackToLibrary={backToLibrary}
-          onProgressChange={updateProgress}
-          onResetStory={resetStory}
+          onBackToModeSelection={backToModeSelection}
         />
       )}
     </>
@@ -128,18 +138,14 @@ export function App() {
 
 function StoryLibrary({
   stories,
-  progress,
   languageFilter,
   onLanguageFilterChange,
   onOpenStory,
-  onResetStory,
 }: {
   stories: Story[];
-  progress: ProgressMap;
   languageFilter: LanguageFilter;
   onLanguageFilterChange: (language: LanguageFilter) => void;
   onOpenStory: (story: Story) => void;
-  onResetStory: (storyId: string) => void;
 }) {
   const filteredStories = stories.filter((story) => {
     if (languageFilter === 'all') {
@@ -181,47 +187,109 @@ function StoryLibrary({
       </div>
 
       <section className="story-grid" aria-label="Histórias">
-        {filteredStories.map((story) => {
-          const storyProgress = progress[story.id];
-          const isStarted = storyProgress && !storyProgress.completed;
-          const isComplete = storyProgress?.completed;
-
-          return (
-            <article className="story-card" key={story.id}>
-              <img src={story.coverImage} alt="" className="story-cover" />
-              <div className="story-card-body">
-                <div className="story-meta">
-                  <span>{getLanguageLabel(story)}</span>
-                  <span>{getLevelLabel(story)}</span>
-                  {isComplete && <span>Concluída</span>}
-                  {isStarted && <span>Em andamento</span>}
-                </div>
-                <h2>{story.title}</h2>
-                <p>{story.description}</p>
-                <div className="story-actions">
-                  <button
-                    className="primary-button"
-                    type="button"
-                    onClick={() => {
-                      if (isComplete) {
-                        onResetStory(story.id);
-                      }
-
-                      onOpenStory(story);
-                    }}
-                  >
-                    {isStarted ? 'Continuar' : isComplete ? 'Ler de novo' : 'Começar'}
-                  </button>
-                  {(isStarted || isComplete) && (
-                    <button className="text-button" type="button" onClick={() => onResetStory(story.id)}>
-                      Reiniciar
-                    </button>
-                  )}
-                </div>
+        {filteredStories.map((story) => (
+          <article className="story-card" key={story.id}>
+            <img src={story.coverImage} alt="" className="story-cover" />
+            <div className="story-card-body">
+              <div className="story-meta">
+                <span>{getLanguageLabel(story)}</span>
+                <span>{getLevelLabel(story)}</span>
               </div>
-            </article>
-          );
-        })}
+              <h2>{story.title}</h2>
+              <p>{story.description}</p>
+              <div className="story-actions">
+                <button className="primary-button" type="button" onClick={() => onOpenStory(story)}>
+                  Escolher modo
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+  );
+}
+
+function StoryModeSelection({
+  story,
+  onBackToLibrary,
+  onStartReading,
+}: {
+  story: Story;
+  onBackToLibrary: () => void;
+  onStartReading: (story: Story, mode: ReadingMode) => void;
+}) {
+  return (
+    <main className="mode-shell">
+      <section className="mode-panel" aria-labelledby="mode-title">
+        <button className="text-button mode-back-button" type="button" onClick={onBackToLibrary}>
+          ‹ Histórias
+        </button>
+        <img src={story.coverImage} alt="" className="mode-cover" />
+        <div className="mode-copy">
+          <p className="eyebrow">{story.title}</p>
+          <h1 id="mode-title">Como vamos ler?</h1>
+          <p>{story.description}</p>
+        </div>
+        <div className="mode-options">
+          <button className="mode-option mode-option-primary" type="button" onClick={() => onStartReading(story, 'read-aloud')}>
+            <span className="mode-icon mode-icon-read-aloud" aria-hidden="true">
+              <span className="story-buddy story-buddy-audio">
+                <span className="buddy-headphone-band" />
+                <span className="buddy-ear buddy-ear-left" />
+                <span className="buddy-ear buddy-ear-right" />
+                <span className="buddy-face">
+                  <span className="buddy-eye buddy-eye-left" />
+                  <span className="buddy-eye buddy-eye-right" />
+                  <span className="buddy-smile" />
+                </span>
+                <span className="buddy-sound buddy-sound-one" />
+                <span className="buddy-sound buddy-sound-two" />
+              </span>
+            </span>
+            <span className="mode-option-copy">
+              <span>Leia para mim</span>
+              <small>O app narra a história inteira e vira as páginas sozinho.</small>
+            </span>
+          </button>
+          <button className="mode-option" type="button" onClick={() => onStartReading(story, 'independent')}>
+            <span className="mode-icon mode-icon-independent" aria-hidden="true">
+              <span className="story-buddy story-buddy-book">
+                <span className="buddy-book buddy-book-left">
+                  <span className="book-line book-line-one" />
+                  <span className="book-line book-line-two" />
+                </span>
+                <span className="buddy-book buddy-book-right">
+                  <span className="book-eye book-eye-left" />
+                  <span className="book-eye book-eye-right" />
+                  <span className="book-smile" />
+                </span>
+                <span className="buddy-star" />
+              </span>
+            </span>
+            <span className="mode-option-copy">
+              <span>Eu consigo ler</span>
+              <small>Para ler sozinho ou junto com a família, página por página.</small>
+            </span>
+          </button>
+          <button className="mode-option" type="button" onClick={() => onStartReading(story, 'learning')}>
+            <span className="mode-icon mode-icon-learning" aria-hidden="true">
+              <span className="story-buddy story-buddy-letter">
+                <span className="letter-card">
+                  <span className="letter-a">A</span>
+                  <span className="letter-smile" />
+                </span>
+                <span className="letter-syllable letter-syllable-one" />
+                <span className="letter-syllable letter-syllable-two" />
+                <span className="buddy-star buddy-star-small" />
+              </span>
+            </span>
+            <span className="mode-option-copy">
+              <span>Aprender a ler</span>
+              <small>Mostra uma palavra grande por vez, com sílabas e áudio de apoio.</small>
+            </span>
+          </button>
+        </div>
       </section>
     </main>
   );
@@ -229,72 +297,36 @@ function StoryLibrary({
 
 function StoryReader({
   story,
-  savedProgress,
+  mode,
   onBackToLibrary,
-  onProgressChange,
-  onResetStory,
+  onBackToModeSelection,
 }: {
   story: Story;
-  savedProgress?: StoryProgress;
+  mode: ReadingMode;
   onBackToLibrary: () => void;
-  onProgressChange: (storyId: string, progress: StoryProgress) => void;
-  onResetStory: (storyId: string) => void;
+  onBackToModeSelection: () => void;
 }) {
-  const initialProgress = useMemo(() => clampProgress(story, savedProgress), [savedProgress, story]);
-  const [pageIndex, setPageIndex] = useState(initialProgress.pageIndex);
-  const [wordIndex, setWordIndex] = useState(initialProgress.wordIndex);
-  const [completed, setCompleted] = useState(initialProgress.completed);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [completed, setCompleted] = useState(false);
   const [audioStatus, setAudioStatus] = useState('');
-  const [audioTimings, setAudioTimings] = useState<WordTiming[]>([]);
+  const [isAudioPaused, setIsAudioPaused] = useState(false);
   const [isShowingSyllables, setIsShowingSyllables] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioFrameRef = useRef<number | null>(null);
+  const isAudioPausedRef = useRef(false);
 
+  const isLearningMode = mode === 'learning';
+  const isIndependentMode = mode === 'independent';
+  const isReadAloudMode = mode === 'read-aloud';
   const currentPage = story.pages[pageIndex];
   const words = useMemo(() => splitWords(currentPage.paragraph), [currentPage.paragraph]);
   const activeWord = words[wordIndex] ?? '';
   const displayedWord = isShowingSyllables ? splitIntoSyllables(activeWord, story) : activeWord;
 
   useEffect(() => {
-    let isCurrent = true;
-    setAudioTimings([]);
-
-    if (!currentPage.audioTimings) {
-      return () => {
-        isCurrent = false;
-      };
-    }
-
-    async function loadAudioTimings() {
-      try {
-        const timings = await fetchAudioTimings(currentPage.audioTimings as string);
-        if (isCurrent) {
-          setAudioTimings(timings);
-        }
-      } catch {
-        if (isCurrent) {
-          setAudioTimings([]);
-        }
-      }
-    }
-
-    loadAudioTimings();
-
-    return () => {
-      isCurrent = false;
-    };
-  }, [currentPage.audioTimings]);
-
-  const persist = useCallback(
-    (nextPageIndex: number, nextWordIndex: number, isCompleted = false) => {
-      onProgressChange(story.id, {
-        pageIndex: nextPageIndex,
-        wordIndex: nextWordIndex,
-        completed: isCompleted,
-      });
-    },
-    [onProgressChange, story.id],
-  );
+    isAudioPausedRef.current = isAudioPaused;
+  }, [isAudioPaused]);
 
   const stopPageAudio = useCallback((shouldClearStatus = true) => {
     if (audioFrameRef.current !== null) {
@@ -306,6 +338,8 @@ function StoryReader({
       audioRef.current.pause();
       audioRef.current = null;
     }
+
+    setIsAudioPaused(false);
 
     if (shouldClearStatus) {
       setAudioStatus('');
@@ -319,10 +353,34 @@ function StoryReader({
       setCompleted(false);
       setPageIndex(boundedPage);
       setWordIndex(0);
-      persist(boundedPage, 0);
     },
-    [persist, stopPageAudio, story.pages.length],
+    [stopPageAudio, story.pages.length],
   );
+
+  const previousPage = useCallback(() => {
+    if (completed) {
+      setCompleted(false);
+      setPageIndex(story.pages.length - 1);
+      setWordIndex(0);
+      return;
+    }
+
+    goToPage(pageIndex - 1);
+  }, [completed, goToPage, pageIndex, story.pages.length]);
+
+  const nextPage = useCallback(() => {
+    if (completed) {
+      return;
+    }
+
+    if (pageIndex < story.pages.length - 1) {
+      goToPage(pageIndex + 1);
+      return;
+    }
+
+    stopPageAudio();
+    setCompleted(true);
+  }, [completed, goToPage, pageIndex, stopPageAudio, story.pages.length]);
 
   const previousWord = useCallback(() => {
     stopPageAudio();
@@ -331,29 +389,23 @@ function StoryReader({
       setCompleted(false);
       const lastPageIndex = story.pages.length - 1;
       const lastWords = splitWords(story.pages[lastPageIndex].paragraph);
-      const lastWordIndex = Math.max(lastWords.length - 1, 0);
       setPageIndex(lastPageIndex);
-      setWordIndex(lastWordIndex);
-      persist(lastPageIndex, lastWordIndex);
+      setWordIndex(Math.max(lastWords.length - 1, 0));
       return;
     }
 
     if (wordIndex > 0) {
-      const nextWordIndex = wordIndex - 1;
-      setWordIndex(nextWordIndex);
-      persist(pageIndex, nextWordIndex);
+      setWordIndex(wordIndex - 1);
       return;
     }
 
     if (pageIndex > 0) {
       const nextPageIndex = pageIndex - 1;
       const previousPageWords = splitWords(story.pages[nextPageIndex].paragraph);
-      const nextWordIndex = Math.max(previousPageWords.length - 1, 0);
       setPageIndex(nextPageIndex);
-      setWordIndex(nextWordIndex);
-      persist(nextPageIndex, nextWordIndex);
+      setWordIndex(Math.max(previousPageWords.length - 1, 0));
     }
-  }, [completed, pageIndex, persist, stopPageAudio, story.pages, wordIndex]);
+  }, [completed, pageIndex, stopPageAudio, story.pages, wordIndex]);
 
   const nextWord = useCallback(() => {
     stopPageAudio();
@@ -363,181 +415,242 @@ function StoryReader({
     }
 
     if (wordIndex < words.length - 1) {
-      const nextWordIndex = wordIndex + 1;
-      setWordIndex(nextWordIndex);
-      persist(pageIndex, nextWordIndex);
+      setWordIndex(wordIndex + 1);
       return;
     }
 
     if (pageIndex < story.pages.length - 1) {
-      const nextPageIndex = pageIndex + 1;
-      setPageIndex(nextPageIndex);
+      setPageIndex(pageIndex + 1);
       setWordIndex(0);
-      persist(nextPageIndex, 0);
       return;
     }
 
     setCompleted(true);
-    persist(pageIndex, wordIndex, true);
-  }, [completed, pageIndex, persist, stopPageAudio, story.pages.length, wordIndex, words.length]);
+  }, [completed, pageIndex, stopPageAudio, story.pages.length, wordIndex, words.length]);
 
-  function rereadStory() {
+  const rereadStory = useCallback(() => {
     stopPageAudio();
-    onResetStory(story.id);
     setCompleted(false);
     setPageIndex(0);
     setWordIndex(0);
-  }
+  }, [stopPageAudio]);
 
-  async function playPageAudio() {
-    if (!currentPage.audio) {
-      setAudioStatus('Áudio indisponível');
-      window.setTimeout(() => setAudioStatus(''), 1600);
+  const playPageAudio = useCallback(
+    async (shouldAutoAdvance = false) => {
+      if (!currentPage.audio) {
+        setAudioStatus('Áudio indisponível');
+        window.setTimeout(() => setAudioStatus(''), 1600);
+        return;
+      }
+
+      try {
+        stopPageAudio(false);
+        const playbackPageIndex = pageIndex;
+        const playbackWords = [...words];
+        const playbackTimings = currentPage.audioTimings
+          ? await fetchAudioTimings(currentPage.audioTimings)
+          : [];
+        const audio = new Audio(currentPage.audio);
+        audioRef.current = audio;
+
+        let timeline: WordTiming[] = [];
+        let lastHighlightedIndex = -1;
+
+        const updateHighlightedWord = (nextWordIndex: number) => {
+          if (lastHighlightedIndex === nextWordIndex) {
+            return;
+          }
+
+          lastHighlightedIndex = nextWordIndex;
+          setWordIndex(nextWordIndex);
+        };
+
+        const syncHighlight = () => {
+          if (audioRef.current !== audio) {
+            return;
+          }
+
+          if (Number.isFinite(audio.duration) && audio.duration > 0) {
+            if (timeline.length === 0) {
+              timeline =
+                playbackTimings.length === playbackWords.length
+                  ? playbackTimings
+                  : buildWordTimeline(playbackWords, audio.duration);
+            }
+
+            updateHighlightedWord(getTimelineWordIndex(timeline, audio.currentTime));
+          }
+
+          if (!audio.paused && !audio.ended) {
+            audioFrameRef.current = window.requestAnimationFrame(syncHighlight);
+          }
+        };
+
+        audio.addEventListener('loadedmetadata', syncHighlight);
+        audio.addEventListener('play', syncHighlight);
+        audio.addEventListener('ended', () => {
+          updateHighlightedWord(Math.max(playbackWords.length - 1, 0));
+          if (audioFrameRef.current !== null) {
+            window.cancelAnimationFrame(audioFrameRef.current);
+            audioFrameRef.current = null;
+          }
+          if (audioRef.current === audio) {
+            audioRef.current = null;
+          }
+          setIsAudioPaused(false);
+          setAudioStatus('');
+
+          if (!shouldAutoAdvance) {
+            return;
+          }
+
+          if (playbackPageIndex < story.pages.length - 1) {
+            setPageIndex(playbackPageIndex + 1);
+            setWordIndex(0);
+            return;
+          }
+
+          setCompleted(true);
+        });
+        audio.addEventListener('error', () => {
+          if (audioRef.current === audio) {
+            audioRef.current = null;
+          }
+          setAudioStatus('Áudio indisponível');
+          window.setTimeout(() => setAudioStatus(''), 1600);
+        });
+
+        setAudioStatus('Lendo...');
+        setIsAudioPaused(false);
+        updateHighlightedWord(0);
+        await audio.play();
+      } catch {
+        stopPageAudio(false);
+        setIsAudioPaused(false);
+        setAudioStatus('Toque novamente');
+        window.setTimeout(() => setAudioStatus(''), 1600);
+      }
+    },
+    [currentPage.audio, currentPage.audioTimings, pageIndex, stopPageAudio, story.pages.length, words],
+  );
+
+  const pauseOrResumeReadAloud = useCallback(() => {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      void playPageAudio(true);
       return;
     }
 
-    try {
-      stopPageAudio(false);
-      const playbackPageIndex = pageIndex;
-      const playbackWords = [...words];
-      const playbackTimings = currentPage.audioTimings
-        ? await fetchAudioTimings(currentPage.audioTimings)
-        : [...audioTimings];
-      if (playbackTimings.length > 0) {
-        setAudioTimings(playbackTimings);
-      }
-      const audio = new Audio(currentPage.audio);
-      audioRef.current = audio;
-
-      let timeline: WordTiming[] = [];
-      let lastHighlightedIndex = -1;
-
-      const updateHighlightedWord = (nextWordIndex: number) => {
-        if (lastHighlightedIndex === nextWordIndex) {
-          return;
-        }
-
-        lastHighlightedIndex = nextWordIndex;
-        setWordIndex(nextWordIndex);
-        persist(playbackPageIndex, nextWordIndex);
-      };
-
-      const syncHighlight = () => {
-        if (audioRef.current !== audio) {
-          return;
-        }
-
-        if (Number.isFinite(audio.duration) && audio.duration > 0) {
-          if (timeline.length === 0) {
-            timeline =
-              playbackTimings.length === playbackWords.length
-                ? playbackTimings
-                : buildWordTimeline(playbackWords, audio.duration);
-          }
-
-          updateHighlightedWord(getTimelineWordIndex(timeline, audio.currentTime));
-        }
-
-        if (!audio.paused && !audio.ended) {
-          audioFrameRef.current = window.requestAnimationFrame(syncHighlight);
-        }
-      };
-
-      audio.addEventListener('loadedmetadata', syncHighlight);
-      audio.addEventListener('play', syncHighlight);
-      audio.addEventListener('ended', () => {
-        updateHighlightedWord(Math.max(playbackWords.length - 1, 0));
-        if (audioFrameRef.current !== null) {
-          window.cancelAnimationFrame(audioFrameRef.current);
-          audioFrameRef.current = null;
-        }
-        if (audioRef.current === audio) {
-          audioRef.current = null;
-        }
-        setAudioStatus('');
-      });
-      audio.addEventListener('error', () => {
-        if (audioRef.current === audio) {
-          audioRef.current = null;
-        }
-        setAudioStatus('Áudio indisponível');
-        window.setTimeout(() => setAudioStatus(''), 1600);
-      });
-
-      setAudioStatus('Lendo...');
-      updateHighlightedWord(0);
-      await audio.play();
-    } catch {
-      stopPageAudio(false);
-      setAudioStatus('Toque novamente');
-      window.setTimeout(() => setAudioStatus(''), 1600);
+    if (audio.paused) {
+      void audio
+        .play()
+        .then(() => {
+          setIsAudioPaused(false);
+          setAudioStatus('Lendo...');
+        })
+        .catch(() => {
+          setAudioStatus('Toque novamente');
+          window.setTimeout(() => setAudioStatus(''), 1600);
+        });
+      return;
     }
-  }
 
-  useEffect(() => () => stopPageAudio(), [pageIndex, stopPageAudio, story.id]);
+    audio.pause();
+    if (audioFrameRef.current !== null) {
+      window.cancelAnimationFrame(audioFrameRef.current);
+      audioFrameRef.current = null;
+    }
+    setIsAudioPaused(true);
+    setAudioStatus('Pausado');
+  }, [playPageAudio]);
+
+  useEffect(() => () => stopPageAudio(), [pageIndex, mode, stopPageAudio, story.id]);
+
+  useEffect(() => {
+    if (!isReadAloudMode || completed || isAudioPausedRef.current) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      void playPageAudio(true);
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [completed, isReadAloudMode, pageIndex, playPageAudio]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
-        previousWord();
+        if (isLearningMode) {
+          previousWord();
+          return;
+        }
+        previousPage();
       }
 
       if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'Enter') {
         event.preventDefault();
-        nextWord();
+        if (isLearningMode) {
+          nextWord();
+          return;
+        }
+        nextPage();
       }
     }
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextWord, previousWord]);
+  }, [isLearningMode, nextPage, nextWord, previousPage, previousWord]);
 
   return (
-    <main className="reader-shell">
+    <main className={`reader-shell mode-${mode}`}>
       <img className="reader-image" src={currentPage.image} alt={currentPage.alt} />
       <div className="reader-scrim" />
 
       <header className="reader-topbar">
-        <button className="round-button home-button" type="button" onClick={onBackToLibrary} aria-label="Voltar para histórias">
+        <button className="round-button home-button" type="button" onClick={onBackToModeSelection} aria-label="Voltar para modos">
           ‹
         </button>
         <div className="reader-title">
           <p className="reader-kicker">{story.title}</p>
           <p className="reader-count">
-            Página {pageIndex + 1} de {story.pages.length}
+            {getModeLabel(mode)} · Página {pageIndex + 1} de {story.pages.length}
           </p>
         </div>
-        <div className="reader-actions">
-          <button
-            className={`syllable-action-button ${isShowingSyllables ? 'active-syllable-action-button' : ''}`}
-            type="button"
-            onClick={() => setIsShowingSyllables((current) => !current)}
-            aria-pressed={isShowingSyllables}
-            aria-label={getSyllableToggleAriaLabel(story, isShowingSyllables)}
-            title={getSyllableToggleAriaLabel(story, isShowingSyllables)}
-          >
-            <span className="syllable-checkmark" aria-hidden="true" />
-            <span>Sílabas</span>
-          </button>
-        </div>
+        {isLearningMode && (
+          <div className="reader-actions">
+            <button
+              className={`syllable-action-button ${isShowingSyllables ? 'active-syllable-action-button' : ''}`}
+              type="button"
+              onClick={() => setIsShowingSyllables((current) => !current)}
+              aria-pressed={isShowingSyllables}
+              aria-label={getSyllableToggleAriaLabel(isShowingSyllables)}
+              title={getSyllableToggleAriaLabel(isShowingSyllables)}
+            >
+              <span className="syllable-checkmark" aria-hidden="true" />
+              <span>Sílabas</span>
+            </button>
+          </div>
+        )}
       </header>
 
       <button
         className="page-button page-button-left"
         type="button"
-        onClick={previousWord}
-        disabled={!completed && pageIndex === 0 && wordIndex === 0}
-        aria-label="Palavra anterior"
+        onClick={isLearningMode ? previousWord : previousPage}
+        disabled={!completed && pageIndex === 0 && (isLearningMode ? wordIndex === 0 : true)}
+        aria-label={isLearningMode ? 'Palavra anterior' : 'Página anterior'}
       >
         ‹
       </button>
       <button
         className="page-button page-button-right"
         type="button"
-        onClick={nextWord}
+        onClick={isLearningMode ? nextWord : nextPage}
         disabled={completed}
-        aria-label="Próxima palavra"
+        aria-label={isLearningMode ? 'Próxima palavra' : 'Próxima página'}
       >
         ›
       </button>
@@ -557,40 +670,47 @@ function StoryReader({
             </div>
           </div>
         ) : (
-          <div className="focus-reading-stack">
-            <div className="focus-word-row">
-              <button
-                className="focus-word"
-                style={{ '--word-scale': getWordScale(displayedWord) }}
-                type="button"
-                aria-pressed={isShowingSyllables}
-              >
-                {displayedWord}
-              </button>
-            </div>
+          <div className={`focus-reading-stack ${isIndependentMode ? 'independent-reading-stack' : ''}`}>
+            {isLearningMode && (
+              <div className="focus-word-row">
+                <button
+                  className="focus-word"
+                  style={{ '--word-scale': getWordScale(displayedWord) }}
+                  type="button"
+                  aria-pressed={isShowingSyllables}
+                >
+                  {displayedWord}
+                </button>
+              </div>
+            )}
 
-            <div className="phrase-row">
+            <div className={`phrase-row ${isLearningMode ? '' : 'phrase-row-readable'}`}>
               <div className="paragraph-strip" aria-label="Frase completa">
                 {words.map((word, index) => (
-                  <span className={index === wordIndex ? 'active-paragraph-word' : ''} key={`${word}-${index}`}>
+                  <span
+                    className={!isIndependentMode && index === wordIndex ? 'active-paragraph-word' : ''}
+                    key={`${word}-${index}`}
+                  >
                     {word}
                   </span>
                 ))}
               </div>
-              <button
-                className="speaker-button phrase-speaker-button"
-                type="button"
-                onClick={playPageAudio}
-                aria-label="Ler frase em voz alta"
-                title="Ler frase em voz alta"
-              >
-                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                  <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-                  <path d="M16 8.5a5 5 0 0 1 0 7" />
-                  <path d="M18.5 6a8 8 0 0 1 0 12" />
-                </svg>
-              </button>
-              {audioStatus && <span className="audio-status">{audioStatus}</span>}
+              {isLearningMode && (
+                <button
+                  className="speaker-button phrase-speaker-button"
+                  type="button"
+                  onClick={() => void playPageAudio(false)}
+                  aria-label="Ler frase em voz alta"
+                  title="Ler frase em voz alta"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+                    <path d="M16 8.5a5 5 0 0 1 0 7" />
+                    <path d="M18.5 6a8 8 0 0 1 0 12" />
+                  </svg>
+                </button>
+              )}
+              {audioStatus && !isIndependentMode && <span className="audio-status">{audioStatus}</span>}
             </div>
           </div>
         )}
@@ -605,18 +725,39 @@ function StoryReader({
               onClick={() => goToPage(pageIndex - 1)}
               disabled={pageIndex === 0}
             >
-              ‹ Página
+              Anterior
             </button>
-            <div className="word-progress">
-              {pageIndex + 1} / {story.pages.length}
-            </div>
+            {isReadAloudMode ? (
+              <button
+                className="primary-button control-button playback-button"
+                type="button"
+                onClick={pauseOrResumeReadAloud}
+                aria-label={isAudioPaused ? 'Retomar leitura' : 'Pausar leitura'}
+                title={isAudioPaused ? 'Retomar leitura' : 'Pausar leitura'}
+              >
+                <span className={`playback-icon ${isAudioPaused ? 'playback-icon-play' : 'playback-icon-pause'}`} aria-hidden="true">
+                  {isAudioPaused ? (
+                    <span className="playback-triangle" />
+                  ) : (
+                    <>
+                      <span className="playback-bar" />
+                      <span className="playback-bar" />
+                    </>
+                  )}
+                </span>
+              </button>
+            ) : (
+              <div className="word-progress">
+                {pageIndex + 1} / {story.pages.length}
+              </div>
+            )}
             <button
               className="primary-button control-button"
               type="button"
               onClick={() => goToPage(pageIndex + 1)}
               disabled={pageIndex === story.pages.length - 1}
             >
-              Página ›
+              Próxima
             </button>
           </div>
         </footer>
@@ -692,7 +833,7 @@ function getStorySlugFromPath() {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
-function getSyllableToggleAriaLabel(story: Story, isActive: boolean) {
+function getSyllableToggleAriaLabel(isActive: boolean) {
   return isActive ? 'Ocultar sílabas' : 'Ativar sílabas';
 }
 
@@ -712,4 +853,16 @@ function getLevelLabel(story: Story) {
   }
 
   return story.level;
+}
+
+function getModeLabel(mode: ReadingMode) {
+  if (mode === 'read-aloud') {
+    return 'Leia para mim';
+  }
+
+  if (mode === 'independent') {
+    return 'Eu consigo ler';
+  }
+
+  return 'Aprender a ler';
 }

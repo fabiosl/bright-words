@@ -20,11 +20,3 @@ export type Story = {
 export type StoriesResponse = {
   stories: Story[];
 };
-
-export type StoryProgress = {
-  pageIndex: number;
-  wordIndex: number;
-  completed: boolean;
-};
-
-export type ProgressMap = Record<string, StoryProgress>;
