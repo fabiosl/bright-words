@@ -69,6 +69,10 @@ export function App() {
   const activeStory = stories.find((story) => story.id === activeSession?.storyId) ?? null;
   const view: View = activeSession && activeStory ? 'reader' : selectedStory ? 'mode-select' : 'library';
 
+  useEffect(() => {
+    updateDocumentShareMeta(selectedStory);
+  }, [selectedStory]);
+
   function openStory(story: Story) {
     const nextPath = `/stories/${getStorySlug(story)}`;
     if (window.location.pathname !== nextPath) {
@@ -695,21 +699,6 @@ function StoryReader({
                   </span>
                 ))}
               </div>
-              {isLearningMode && (
-                <button
-                  className="speaker-button phrase-speaker-button"
-                  type="button"
-                  onClick={() => void playPageAudio(false)}
-                  aria-label="Ler frase em voz alta"
-                  title="Ler frase em voz alta"
-                >
-                  <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                    <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-                    <path d="M16 8.5a5 5 0 0 1 0 7" />
-                    <path d="M18.5 6a8 8 0 0 1 0 12" />
-                  </svg>
-                </button>
-              )}
               {audioStatus && !isIndependentMode && <span className="audio-status">{audioStatus}</span>}
             </div>
           </div>
@@ -831,6 +820,41 @@ function getStorySlug(story: Story) {
 function getStorySlugFromPath() {
   const match = window.location.pathname.match(/^\/stories\/([^/]+)\/?$/);
   return match ? decodeURIComponent(match[1]) : null;
+}
+
+function updateDocumentShareMeta(story: Story | null) {
+  const defaultTitle = 'Palavras Brilhantes';
+  const defaultDescription = 'Historias infantis interativas para ler, ouvir e aprender no seu ritmo.';
+  const title = story ? `${story.title} | Palavras Brilhantes` : defaultTitle;
+  const description = story?.description || defaultDescription;
+  const image = story?.coverImage || '/stories/tres-porquinhos/cover.png';
+  const url = story ? `/stories/${getStorySlug(story)}` : '/';
+
+  document.title = title;
+  setMetaContent('name', 'description', description);
+  setMetaContent('property', 'og:title', title);
+  setMetaContent('property', 'og:description', description);
+  setMetaContent('property', 'og:image', toAbsoluteUrl(image));
+  setMetaContent('property', 'og:url', toAbsoluteUrl(url));
+  setMetaContent('name', 'twitter:title', title);
+  setMetaContent('name', 'twitter:description', description);
+  setMetaContent('name', 'twitter:image', toAbsoluteUrl(image));
+}
+
+function setMetaContent(attribute: 'name' | 'property', key: string, content: string) {
+  let meta = document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.setAttribute(attribute, key);
+    document.head.append(meta);
+  }
+
+  meta.content = content;
+}
+
+function toAbsoluteUrl(pathOrUrl: string) {
+  return new URL(pathOrUrl, window.location.origin).toString();
 }
 
 function getSyllableToggleAriaLabel(isActive: boolean) {
