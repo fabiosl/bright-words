@@ -1,6 +1,220 @@
 {
   "stories": [
     {
+      "id": "ayrton-senna-beco",
+      "title": "Ayrton Senna do Brasil!",
+      "description": "Ayrton treina, aprende na chuva, vive rivalidades e inspira o Brasil.",
+      "level": "iniciante",
+      "language": "pt-BR",
+      "coverImage": "/stories/ayrton-senna-beco/cover.png",
+      "pages": [
+        {
+          "image": "/stories/ayrton-senna-beco/page-1.png",
+          "alt": "Menino pequeno em São Paulo observando carros com curiosidade.",
+          "paragraph": "Ayrton Senna nasceu em São Paulo. Quando era pequeno, chamavam ele de Beco.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-1-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-1-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-2.png",
+          "alt": "Beco olhando carros coloridos passarem em uma rua tranquila.",
+          "paragraph": "Beco gostava de movimento. Gostava de olhar carros passando.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-2-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-2-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-3.svg",
+          "alt": "Pai mostrando um kart pequeno para Beco no quintal.",
+          "paragraph": "Seu pai, Milton, fez um kart para ele. Era pequeno, mas parecia mágico.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-3-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-3-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-4.svg",
+          "alt": "Beco sentado em um kart pequeno segurando o volante.",
+          "paragraph": "O kart fazia vruum! Beco segurava o volante com cuidado.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-4-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-4-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-5.svg",
+          "alt": "Ayrton adolescente treinando de kart em uma pista simples.",
+          "paragraph": "Ayrton cresceu e treinou muito. Ele começou a competir de kart aos treze anos.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-5-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-5-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-6.svg",
+          "alt": "Kart em pista molhada com chuva leve e expressão de concentração.",
+          "paragraph": "Na primeira corrida com chuva, ele teve dificuldade. A pista escorregava como sabão.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-6-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-6-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-7.svg",
+          "alt": "Ayrton olhando a chuva pela janela e se preparando para treinar.",
+          "paragraph": "Então Ayrton teve uma ideia. Toda vez que chovia, ele ia treinar.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-7-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-7-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-8.svg",
+          "alt": "Kart correndo em pista molhada com gotinhas de chuva ao redor.",
+          "paragraph": "Plim, plim, plim, caía a chuva. Vruum, vruum, vruum, ia o kart.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-8-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-8-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-9.svg",
+          "alt": "Piloto em kart sorrindo com chuva e uma pista brilhante.",
+          "paragraph": "Com treino, Ayrton ficou forte na pista molhada. Depois, chamaram ele de Rei da Chuva.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-9-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-9-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-10.svg",
+          "alt": "Ayrton jovem com mala e capacete perto de uma pista distante.",
+          "paragraph": "Ayrton foi correr longe do Brasil. Ele aprendeu novas pistas e novos carros.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-10-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-10-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-11.svg",
+          "alt": "Carro de corrida grande em pista com Ayrton observando impressionado.",
+          "paragraph": "Um dia, chegou à Fórmula 1. Os carros eram grandes, rápidos e barulhentos.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-11-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-11-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-12.svg",
+          "alt": "Ayrton ao lado de um carro de corrida simples em uma garagem pequena.",
+          "paragraph": "Seu primeiro time na Fórmula 1 foi a Toleman. Era um time pequeno, mas Ayrton sonhava grande.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-12-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-12-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-13.svg",
+          "alt": "Carros de corrida em rua estreita molhada lembrando Mônaco.",
+          "paragraph": "Em Mônaco, choveu muito. Ayrton passou carros famosos na pista molhada.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-13-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-13-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-14.svg",
+          "alt": "Torcida surpresa vendo Ayrton no pódio em segundo lugar.",
+          "paragraph": "Ele ficou em segundo lugar. Muita gente abriu os olhos e disse: \"Quem é esse piloto?\"",
+          "audio": "/stories/ayrton-senna-beco/audio/page-14-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-14-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-15.svg",
+          "alt": "Carro de corrida preto e dourado genérico brilhando na pista.",
+          "paragraph": "Depois, Ayrton correu pela Lotus. Seu carro preto e dourado brilhava na pista.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-15-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-15-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-16.svg",
+          "alt": "Ayrton comemorando sua primeira vitória em pista chuvosa.",
+          "paragraph": "Em Portugal, também com chuva, ele venceu pela primeira vez. Ayrton sorriu como quem dizia: \"Eu consegui!\"",
+          "audio": "/stories/ayrton-senna-beco/audio/page-16-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-16-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-17.svg",
+          "alt": "Dois pilotos de corrida se cumprimentando com carros ao fundo.",
+          "paragraph": "Mais tarde, Ayrton foi para a McLaren. Lá, encontrou Alain Prost, um piloto muito esperto.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-17-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-17-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-18.svg",
+          "alt": "Dois pilotos representados como pensamento e velocidade na pista.",
+          "paragraph": "Prost era chamado de Professor. Ayrton era rápido como um raio.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-18-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-18-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-19.svg",
+          "alt": "Dois carros de corrida lado a lado em disputa segura na pista.",
+          "paragraph": "Os dois viraram grandes rivais. Um queria passar. O outro queria ficar na frente.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-19-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-19-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-20.svg",
+          "alt": "Pista japonesa com dois carros parados após uma disputa, sem perigo.",
+          "paragraph": "Em Suzuka, no Japão, a rivalidade ficou enorme. Teve disputa, batida e muita conversa.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-20-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-20-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-21.svg",
+          "alt": "Dois pilotos olhando para uma pista com expressão séria e respeitosa.",
+          "paragraph": "Nem sempre eles concordavam. Mas os dois marcaram a história da Fórmula 1.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-21-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-21-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-22.svg",
+          "alt": "Ayrton com três troféus e torcida brasileira comemorando.",
+          "paragraph": "Ayrton ganhou três campeonatos mundiais. O Brasil pulou de alegria.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-22-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-22-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-23.svg",
+          "alt": "Capacete amarelo com faixas verde e azul sobre uma mesa.",
+          "paragraph": "Seu capacete era amarelo. Tinha verde e azul, como as cores do Brasil.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-23-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-23-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-24.svg",
+          "alt": "Ayrton em Interlagos com torcida brasileira nas arquibancadas.",
+          "paragraph": "Em 1991, Ayrton correu em Interlagos. Era sua casa, sua pista, seu povo.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-24-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-24-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-25.svg",
+          "alt": "Carro de corrida com engrenagem desenhada ao lado para mostrar o câmbio.",
+          "paragraph": "No fim da corrida, o câmbio quebrou. O carro ficou preso na sexta marcha.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-25-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-25-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-26.svg",
+          "alt": "Ayrton concentrado segurando firme o volante do carro.",
+          "paragraph": "Ayrton segurou firme. Seu corpo doía, mas ele continuou.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-26-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-26-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-27.svg",
+          "alt": "Ayrton vencendo no Brasil e sendo ajudado a erguer os braços.",
+          "paragraph": "Ele venceu no Brasil. Depois, quase não conseguia levantar os braços.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-27-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-27-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-28.svg",
+          "alt": "Ayrton passando quatro carros em uma pista molhada em Donington.",
+          "paragraph": "Em Donington, Ayrton fez uma volta incrível. Passou quatro carros logo no começo.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-28-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-28-fixed.timings.json"
+        },
+        {
+          "image": "/stories/ayrton-senna-beco/page-29.svg",
+          "alt": "Capacete amarelo, pista e uma estrela suave representando o legado de Ayrton.",
+          "paragraph": "Ayrton foi veloz na pista. E deixou coragem, treino e carinho para o Brasil.",
+          "audio": "/stories/ayrton-senna-beco/audio/page-29-fixed.mp3",
+          "audioTimings": "/stories/ayrton-senna-beco/audio/page-29-fixed.timings.json"
+        }
+      ],
+      "slug": "ayrton-senna-o-menino-chamado-beco"
+    },
+    {
       "id": "lila-moonbeam",
       "title": "Lila and the Little Moonbeam",
       "description": "Lila helps a sleepy moonbeam find its way home.",
@@ -130,6 +344,127 @@
         }
       ],
       "slug": "a-pedra-que-guarda-desenhos"
+    },
+    {
+      "id": "guga-coracao-no-saibro",
+      "title": "Guga e o coração no saibro",
+      "description": "A história real de Gustavo Kuerten, o Guga, do treino em Florianópolis ao coração desenhado em Roland Garros.",
+      "level": "iniciante",
+      "language": "pt-BR",
+      "coverImage": "/stories/guga-coracao-no-saibro/page-1.png",
+      "pages": [
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-1.png",
+          "alt": "Guga menino em Florianópolis, perto do mar e de uma quadra de tênis.",
+          "paragraph": "Gustavo Kuerten nasceu em Florianópolis. Sua cidade tem mar, vento e quadras de tênis."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-2.png",
+          "alt": "Guga sorri enquanto crianças gritam seu apelido perto da quadra.",
+          "paragraph": "Todo mundo chamava Gustavo de Guga. Era um apelido curto, alegre e fácil de gritar."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-3.png",
+          "alt": "Guga menino corre atrás de uma bola de tênis com sua raquete.",
+          "paragraph": "Quando era menino, Guga começou a jogar tênis. Ele treinava com vontade e corria atrás da bola."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-4.png",
+          "alt": "Guga brinca e treina tênis com seu irmão em uma quadra.",
+          "paragraph": "Guga gostava de brincar com seu irmão. Na quadra, ele aprendia a cair, levantar e tentar de novo."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-5.png",
+          "alt": "Uma bola de tênis passa rápida enquanto Guga prepara a raquete.",
+          "paragraph": "A bola ia para um lado. Guga corria para o outro. Pá! Lá vinha a raquete."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-6.png",
+          "alt": "Guga treina em uma quadra de saibro vermelho.",
+          "paragraph": "Ele treinou muito em quadras de saibro. O saibro é uma terra vermelha usada no tênis."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-7.png",
+          "alt": "Guga desliza no saibro e deixa marcas vermelhas no chão.",
+          "paragraph": "Quando Guga deslizava no saibro, parecia dançar. Seus pés faziam riscos no chão."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-8.png",
+          "alt": "Guga adulto viaja com uma mala e uma raquete para torneios.",
+          "paragraph": "Guga cresceu e virou jogador profissional. Ele viajou para jogar contra atletas do mundo todo."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-9.png",
+          "alt": "Guga jovem comemora uma vitória nas duplas juvenis em Roland Garros.",
+          "paragraph": "Em 1994, ainda jovem, Guga venceu em Roland Garros nas duplas juvenis. Paris começou a conhecer seu sorriso."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-10.png",
+          "alt": "Guga entra em uma quadra de Roland Garros em 1997.",
+          "paragraph": "Em 1997, Guga voltou a Roland Garros. Muita gente ainda não sabia seu nome."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-11.png",
+          "alt": "Guga alcança uma bola difícil durante uma partida.",
+          "paragraph": "Mas Guga jogou com coragem. Ele venceu pontos difíceis. Ele não desistiu."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-12.png",
+          "alt": "A torcida observa Guga, com cabelo cacheado e camisa colorida.",
+          "paragraph": "A torcida olhava surpresa. Quem era aquele brasileiro de cabelo cacheado e camisa colorida?"
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-13.png",
+          "alt": "Guga sobe uma montanha simbólica feita de bolas de tênis.",
+          "paragraph": "Guga venceu grandes campeões no caminho. Cada jogo parecia uma montanha. Ele subia uma por uma."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-14.png",
+          "alt": "Guga joga a final de Roland Garros de 1997 contra Sergi Bruguera.",
+          "paragraph": "Na final de 1997, Guga jogou contra Sergi Bruguera. Guga venceu e fez história."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-15.png",
+          "alt": "Pessoas no Brasil comemoram a vitória de Guga com bandeiras verdes e amarelas.",
+          "paragraph": "O Brasil comemorou muito. Guga foi o primeiro brasileiro campeão de simples em um Grand Slam."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-16.png",
+          "alt": "Guga levanta a taça em Paris com um grande sorriso.",
+          "paragraph": "Guga levantou a taça em Paris. Seu sorriso parecia maior que a quadra."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-17.png",
+          "alt": "Guga comemora outra vitória em Roland Garros no ano 2000.",
+          "paragraph": "Em 2000, Guga venceu Roland Garros outra vez. Ele também terminou o ano como número um do mundo."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-18.png",
+          "alt": "Crianças gritam Gu-ga enquanto uma bola de tênis pula.",
+          "paragraph": "Número um! As crianças ouviam: Gu-ga! Gu-ga! O nome pulava como bola nova."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-19.png",
+          "alt": "Guga desenha um coração no saibro de Roland Garros em 2001.",
+          "paragraph": "Em 2001, Guga ganhou Roland Garros pela terceira vez. Depois da vitória, ele desenhou um coração no saibro."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-20.png",
+          "alt": "A torcida sorri ao ver o coração desenhado por Guga no saibro.",
+          "paragraph": "Aquele coração era para a torcida. Era um jeito simples de dizer: obrigado."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-21.png",
+          "alt": "Guga se despede como jogador profissional em Roland Garros em 2008.",
+          "paragraph": "Guga parou de jogar profissionalmente em 2008. Mas seu amor pelo tênis continuou."
+        },
+        {
+          "image": "/stories/guga-coracao-no-saibro/page-22.png",
+          "alt": "Guga participa de uma atividade com crianças em uma quadra de tênis.",
+          "paragraph": "Depois, ele ajudou mais crianças por meio do Instituto Guga Kuerten. Com treino, alegria e coração, um sonho pode ir muito longe."
+        }
+      ],
+      "slug": "guga-e-o-coracao-no-saibro"
     }
   ]
 }
